@@ -20,8 +20,9 @@ class CreateBusinessesTable extends Migration
             $table->string('state');
             $table->integer('zip_code');
             $table->string('type');
-            $table->boolean('active');
-            $table->text('description')->nullable();
+            $table->boolean('active')->default(false);
+            $table->string('status')->default('Pending');
+            $table->text('note')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

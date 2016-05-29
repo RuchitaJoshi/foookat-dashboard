@@ -31,7 +31,7 @@
 
                         {!! Form::open(array('class' => 'form-horizontal', 'route' => 'businesses.store')) !!}
 
-                        @include('partials.forms.business-form',  ['showOwnerSection' => 'Yes', 'showStatusSection' => 'No', 'submitButtonText' => 'Create Business'])
+                        @include('partials.forms.business-form',  ['showOwnerSection' => 'Yes', 'showActiveSection' => 'No', 'showStatusSection' => 'No', 'submitButtonText' => 'Create Business'])
 
                         {!! Form::close() !!}
                     </div>

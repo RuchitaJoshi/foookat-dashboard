@@ -96,14 +96,23 @@
         </div>
     </div>
 </div>
+@if($showActiveSection == "Yes")
+    <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        {{ Form::label('active', 'Active:', ['class' => 'col-sm-2 control-label']) }}
+        <div class="col-sm-10">
+            <input name="active" type="checkbox" @if ($business->active == 1) checked
+                   @endif data-toggle="toggle" data-onstyle="primary"
+                   data-on="Active" data-off="Inactive" data-offstyle="danger">
+        </div>
+    </div>
+@endif
 @if($showStatusSection == "Yes")
     <div class="hr-line-dashed"></div>
     <div class="form-group">
         {{ Form::label('status', 'Status:', ['class' => 'col-sm-2 control-label']) }}
         <div class="col-sm-10">
-            <input name="active" type="checkbox" @if ($store->active == 1) checked
-                   @endif data-toggle="toggle" data-onstyle="primary"
-                   data-on="Active" data-off="Inactive" data-offstyle="danger">
+            {{ Form::select('status', ['Pending' => 'Pending', 'Approved' => 'Approved', 'Rejected' => 'Rejected'], null, ['placeholder' => 'Pick a status', 'class' => 'form-control']) }}
         </div>
     </div>
 @endif

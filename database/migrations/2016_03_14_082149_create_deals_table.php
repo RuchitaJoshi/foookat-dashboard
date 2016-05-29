@@ -26,8 +26,9 @@ class CreateDealsTable extends Migration
             $table->time('end_time')->nullable();
             $table->boolean('recurring');
             $table->boolean('limited_time');
-            $table->boolean('active');
             $table->string('redeem_code');
+            $table->boolean('active')->default(false);
+            $table->string('status')->default('Pending');
             $table->integer('store_id')->unsigned();
             $table->foreign('store_id')->references('id')->on('stores')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

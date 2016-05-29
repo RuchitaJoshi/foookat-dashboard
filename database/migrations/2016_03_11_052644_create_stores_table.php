@@ -26,7 +26,8 @@ class CreateStoresTable extends Migration
             $table->string('mobile_number')->nullable();
             $table->string('phone_number')->nullable();
             $table->integer('business_id')->unsigned();
-            $table->boolean('active');
+            $table->boolean('active')->default(false);
+            $table->string('status')->default('Pending');
             $table->text('note')->nullable();
             $table->foreign('business_id')->references('id')->on('businesses')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

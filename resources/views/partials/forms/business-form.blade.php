@@ -83,10 +83,10 @@
         {{ Form::select('membership_plan', $membership_plans, $plan, ['placeholder' => 'Pick a membership plan', 'class' => 'form-control']) }}
     </div>
 </div>
-@if($showStatusSection == "Yes")
+@if($showActiveSection == "Yes")
     <div class="hr-line-dashed"></div>
     <div class="form-group">
-        {{ Form::label('status', 'Status:', ['class' => 'col-sm-2 control-label']) }}
+        {{ Form::label('active', 'Active:', ['class' => 'col-sm-2 control-label']) }}
         <div class="col-sm-10">
             <input name="active" type="checkbox" @if ($business->active == 1) checked
                    @endif data-toggle="toggle" data-onstyle="primary"
@@ -94,11 +94,20 @@
         </div>
     </div>
 @endif
+@if($showStatusSection == "Yes")
+    <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        {{ Form::label('status', 'Status:', ['class' => 'col-sm-2 control-label']) }}
+        <div class="col-sm-10">
+            {{ Form::select('status', ['Pending' => 'Pending', 'Approved' => 'Approved', 'Rejected' => 'Rejected'], null, ['placeholder' => 'Pick a status', 'class' => 'form-control']) }}
+        </div>
+    </div>
+@endif
 <div class="hr-line-dashed"></div>
 <div class="form-group">
-    {{ Form::label('description', 'Description (Note):', ['class' => 'col-sm-2 control-label']) }}
+    {{ Form::label('note', 'Note:', ['class' => 'col-sm-2 control-label']) }}
     <div class="col-sm-10">
-        {{ Form::textarea('description', null, ['placeholder' => 'Description' , 'class' => 'form-control']) }}
+        {{ Form::textarea('note', null, ['placeholder' => 'Note' , 'class' => 'form-control']) }}
     </div>
 </div>
 <div class="hr-line-dashed"></div>

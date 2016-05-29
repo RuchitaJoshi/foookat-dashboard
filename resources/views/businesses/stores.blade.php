@@ -63,10 +63,12 @@
                                                 <td class="center-table">{{ $store->address }}</td>
                                                 <td class="center-table">{{ $store->zip_code }}</td>
                                                 <td class="center-table">
-                                                    @if ($store->active == 1)
-                                                        <span class="label label-primary">Active</span>
+                                                    @if ($store->status == 'Pending')
+                                                        <span class="label label-warning">Pending</span>
+                                                    @elseif ($store->status == 'Approved')
+                                                        <span class="label label-primary">Approved</span>
                                                     @else
-                                                        <span class="label label-danger">Inactive</span>
+                                                        <span class="label label-danger">Rejected</span>
                                                     @endif
                                                 </td>
                                                 <td class="center-table">{{ $store->created_at }}</td>
@@ -83,10 +85,12 @@
                                                 <td class="center-table">{{ $store->address }}</td>
                                                 <td class="center-table">{{ $store->zip_code }}</td>
                                                 <td class="center-table">
-                                                    @if ($store->active == 1)
-                                                        <span class="label label-primary">Active</span>
+                                                    @if ($store->status == 'Pending')
+                                                        <span class="label label-warning">Pending</span>
+                                                    @elseif ($store->status == 'Approved')
+                                                        <span class="label label-primary">Approved</span>
                                                     @else
-                                                        <span class="label label-danger">Inactive</span>
+                                                        <span class="label label-danger">Rejected</span>
                                                     @endif
                                                 </td>
                                                 <td class="center-table">{{ $store->created_at }}</td>

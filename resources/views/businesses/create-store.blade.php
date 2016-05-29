@@ -40,7 +40,7 @@
 
                         {!! Form::open(array('class' => 'form-horizontal', 'route' => ['businesses.stores.store', $business->id])) !!}
 
-                        @include('partials.forms.store-form',  ['showStatusSection' => 'No', 'submitButtonText' => 'Create Store'])
+                        @include('partials.forms.store-form',  ['showActiveSection' => 'No', 'showStatusSection' => 'No', 'submitButtonText' => 'Create Store'])
 
                         {!! Form::close() !!}
                     </div>

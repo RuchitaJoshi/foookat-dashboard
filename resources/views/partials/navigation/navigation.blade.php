@@ -18,14 +18,6 @@
     </ul>
 </li>
 
-<li class="{{ Request::is('categories/*') ? 'active' : '' }}">
-    <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">Categories</span><span class="fa arrow"></span></a>
-    <ul class="nav nav-second-level collapse">
-        <li class="{{ Request::is('categories/all') || Request::is('categories/all/*') ? 'active' : '' }}"><a href="{{ route('categories.all') }}">All</a></li>
-        <li class="{{ Request::is('categories/create') ? 'active' : '' }}"><a href="{{ route('categories.create') }}">Create</a></li>
-    </ul>
-</li>
-
 <li class="{{ Request::is('users/*') ? 'active' : '' }}">
     <a href="#"><i class="fa fa-users"></i> <span class="nav-label">Users</span><span class="fa arrow"></span></a>
     <ul class="nav nav-second-level collapse">
@@ -53,6 +45,14 @@
                 <li class="{{ Request::is('locations/cities/create') ? 'active' : '' }}"><a href="{{ route('locations.cities.create') }}">Create</a></li>
             </ul>
         </li>
+    </ul>
+</li>
+
+<li class="{{ Request::is('categories/*') ? 'active' : '' }}">
+    <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">Categories</span><span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level collapse">
+        <li class="{{ Request::is('categories/all') || Request::is('categories/all/*') ? 'active' : '' }}"><a href="{{ route('categories.all') }}">All</a></li>
+        <li class="{{ Request::is('categories/create') ? 'active' : '' }}"><a href="{{ route('categories.create') }}">Create</a></li>
     </ul>
 </li>
 

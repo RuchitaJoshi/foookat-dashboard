@@ -16,7 +16,7 @@ class Business extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'address', 'city', 'state', 'zip_code', 'type', 'description', 'active'
+        'name', 'address', 'city', 'state', 'zip_code', 'type', 'description', 'active', 'status'
     ];
 
     protected $dates = ['deleted_at'];

@@ -73,14 +73,18 @@ class AdminController extends Controller
      */
     public function store(AdminRequest $request)
     {
-        $s3 = App::make('aws')->createClient('s3');
+        if ($request->hasFile('profile_picture')) {
+            $extension = $request->file('profile_picture')->getClientOriginalExtension();
+            $destination_filename = rand(11111,99999).'.'.$extension;
+            $file = $request->file('profile_picture')->move('images/uploads/', $destination_filename);
+            $s3 = App::make('aws')->createClient('s3');
+            dd($s3->putObject(array(
+                'Bucket'     => 'foookat',
+                'Key'        => 'cafe',
+                'SourceFile' => 'images/uploads/'.$destination_filename,
+            )));
+        }
 
-        dd($s3->putObject(array(
-            'Bucket'     => 'foookat',
-            'Key'        => 'cafe',
-            'SourceFile' => 'images/logo/foookat_logo_alpha.png',
-        )));
-        
         $role = Role::where('name', '=', $request->get('role'))->firstOrFail();
 
         $admin = User::create(['name' => $request->get('name'),

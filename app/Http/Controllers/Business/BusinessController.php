@@ -101,6 +101,8 @@ class BusinessController extends Controller
      */
     public function store(BusinessRequest $request)
     {
+        dd($request->get('note'));
+
         $role = Role::where('name', '=', 'Business Owner')->firstOrFail();
 
         $membershipPlan = MembershipPlan::where('name', '=', $request->get('membership_plan'))->firstOrFail();
@@ -119,7 +121,7 @@ class BusinessController extends Controller
             'zip_code' => $request->get('zip_code'),
             'type' => $request->get('type'),
             'active' => 1,
-            'description' => $request->get('description') ? $request->get('description') : null
+            'note' => $request->get('note') ? $request->get('note') : null
         ]);
 
         $business->users()->attach($user->id, ['role_id' => $role->id, 'active' => 1]);
@@ -172,14 +174,13 @@ class BusinessController extends Controller
             'zip_code' => $request->get('zip_code'),
             'type' => $request->get('type'),
             'active' => $request->get('active') == "on" ? 1 : 0,
-            'description' => $request->get('description') ? $request->get('description') : null
+            'status' => $request->get('status'),
+            'note' => $request->get('note') ? $request->get('note') : null
         ]);
 
-        if ($business->membershipPlan->first()->name != $membershipPlan->name) {
-            $business->membershipPlan()->detach();
+        $business->membershipPlan()->detach();
 
-            $business->membershipPlan()->attach($membershipPlan->id);
-        }
+        $business->membershipPlan()->attach($membershipPlan->id);
 
         Flash::success($business->name . ' has been successfully updated.');
 
@@ -371,6 +372,7 @@ class BusinessController extends Controller
             'mobile_number' => $request->get('mobile_number'),
             'phone_number' => $request->get('phone_number'),
             'active' => $request->get('active') == "on" ? 1 : 0,
+            'status' => $request->get('status'),
             'note' => $request->get('note') ? $request->get('note') : null
         ]);
 

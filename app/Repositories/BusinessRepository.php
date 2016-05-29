@@ -21,7 +21,7 @@ class BusinessRepository {
             })
             ->leftjoin('users as u', 'bur.user_id', '=', 'u.id')
             ->orderBy('b.created_at', 'desc')
-            ->select('b.id', 'b.name', 'b.address', 'b.city', 'b.state', 'b.zip_code', 'b.type', 'b.active', 'b.created_at', 'b.deleted_at', 'u.name as owner_name')
+            ->select('b.id', 'b.name', 'b.address', 'b.city', 'b.state', 'b.zip_code', 'b.type', 'b.active', 'b.status', 'b.created_at', 'b.deleted_at', 'u.name as owner_name')
             ->paginate(10);
 
         return $businesses;
@@ -41,9 +41,13 @@ class BusinessRepository {
                 $query->on('bur.role_id', '=', 'r.id')
                     ->where('r.name', '=', 'Business Owner');
             })
+            ->leftjoin('businesses_plans as bp', 'b.id', '=', 'bp.business_id')
+            ->leftjoin('membership_plans as mp',function($query) {
+                $query->on('bp.membership_plan_id', '=', 'mp.id');
+            })
             ->leftjoin('users as u', 'bur.user_id', '=', 'u.id')
             ->where('b.id', '=', $id)
-            ->select('b.id', 'b.name', 'b.address', 'b.city', 'b.state', 'b.zip_code', 'b.type', 'b.active', 'b.created_at', 'b.deleted_at', 'u.name as owner_name', 'u.email as owner_email', 'u.mobile_number as owner_mobile_number', 'u.active as owner_active', 'u.deleted_at as owner_deleted_at')
+            ->select('b.id', 'b.name', 'b.address', 'b.city', 'b.state', 'b.zip_code', 'b.type', 'b.active', 'b.status', 'b.created_at', 'b.deleted_at', 'mp.name as membership_plan', 'u.name as owner_name', 'u.email as owner_email', 'u.mobile_number as owner_mobile_number', 'u.active as owner_active', 'u.deleted_at as owner_deleted_at')
             ->first();
 
         return $business;

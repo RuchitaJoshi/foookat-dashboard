@@ -40,7 +40,7 @@
 
                         {!! Form::model($store, array('method' => 'PATCH', 'class' => 'form-horizontal', 'route' => ['businesses.stores.update', $business->id, $store->id])) !!}
 
-                        @include('partials.forms.store-form', ['showStatusSection' => 'Yes', 'submitButtonText' => 'Update Store'])
+                        @include('partials.forms.store-form', ['showActiveSection' => 'Yes', 'showStatusSection' => 'Yes', 'submitButtonText' => 'Update Store'])
 
                         {!! Form::close() !!}
                     </div>

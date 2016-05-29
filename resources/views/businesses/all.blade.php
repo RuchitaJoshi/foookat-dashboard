@@ -54,15 +54,18 @@
                                                 <td class="center-table">{{ $business->zip_code }}</td>
                                                 <td class="center-table">{{ $business->type }}</td>
                                                 <td class="center-table">
-                                                    @if ($business->active == 1)
-                                                        <span class="label label-primary">Active</span>
+                                                    @if ($business->status == 'Pending')
+                                                        <span class="label label-warning">Pending</span>
+                                                    @elseif ($business->status == 'Approved')
+                                                        <span class="label label-primary">Approved</span>
                                                     @else
-                                                        <span class="label label-danger">Inactive</span>
+                                                        <span class="label label-danger">Rejected</span>
                                                     @endif
                                                 </td>
                                                 <td class="center-table">{{ $business->created_at }}</td>
                                                 <td class="center-table">
-                                                    <a href="{{ route('businesses.show', $business->id) }}" class="btn btn-white btn-sm"><i
+                                                    <a href="{{ route('businesses.show', $business->id) }}"
+                                                       class="btn btn-white btn-sm"><i
                                                                 class="fa fa-folder-open"></i> View </a>
                                                 </td>
                                             </tr>
@@ -74,15 +77,18 @@
                                                 <td class="center-table">{{ $business->zip_code }}</td>
                                                 <td class="center-table">{{ $business->type }}</td>
                                                 <td class="center-table">
-                                                    @if ($business->active == 1)
-                                                        <span class="label label-primary">Active</span>
+                                                    @if ($business->status == 'Pending')
+                                                        <span class="label label-warning">Pending</span>
+                                                    @elseif ($business->status == 'Approved')
+                                                        <span class="label label-primary">Approved</span>
                                                     @else
-                                                        <span class="label label-danger">Inactive</span>
+                                                        <span class="label label-danger">Rejected</span>
                                                     @endif
                                                 </td>
                                                 <td class="center-table">{{ $business->created_at }}</td>
                                                 <td class="center-table">
-                                                    <a href="{{ route('businesses.show', $business->id) }}" class="btn btn-white btn-sm"><i
+                                                    <a href="{{ route('businesses.show', $business->id) }}"
+                                                       class="btn btn-white btn-sm"><i
                                                                 class="fa fa-folder-open"></i> View </a>
                                                 </td>
                                             </tr>

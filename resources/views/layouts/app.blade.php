@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Foookat Online Services</title>
     <link href="{{ URL::asset('css/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('css/bootstrap-toggle/bootstrap-toggle.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/animate/animate.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/inspinia/style.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/custom/style.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('css/jquery/jquery-timepicker/jquery.timepicker.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/plugins/bootstrap-toggle/bootstrap-toggle.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/plugins/jqTimepicker/jquery.timepicker.css') }}" rel="stylesheet">
 </head>
 <body class="pace-done skin-1">
 <div id="wrapper">
@@ -73,14 +73,15 @@
 <!-- Mainly scripts -->
 <script src="{{ URL::asset('js/jquery/jquery-2.1.1.js') }}"></script>
 <script src="{{ URL::asset('js/bootstrap/bootstrap.min.js') }}"></script>
-<script src="{{ URL::asset('js/bootstrap-toggle/bootstrap-toggle.min.js') }}"></script>
-<script src="{{ URL::asset('js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
-<script src="{{ URL::asset('js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
-<script src="{{ URL::asset('js/plugins/pace/pace.min.js') }}"></script>
 <script src="{{ URL::asset('js/inspinia/inspinia.js') }}"></script>
 <script src="{{ URL::asset('js/custom/main.js') }}"></script>
 <script src="{{ URL::asset('js/google-places/places.js') }}"></script>
-<script src="{{ URL::asset('js/jquery/jquery-timepicker/jquery.timepicker.min.js') }}"></script>
+<script src="{{ URL::asset('js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+<script src="{{ URL::asset('js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ URL::asset('js/plugins/pace/pace.min.js') }}"></script>
+<script src="{{ URL::asset('js/plugins/bootstrap-toggle/bootstrap-toggle.min.js') }}"></script>
+<script src="{{ URL::asset('js/plugins/jqTimepicker/jquery.timepicker.min.js') }}"></script>
+<script src="{{ URL::asset('js/plugins/tinymce/tinymce.min.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyC0dxOmaA4-s1ad3H_Ci3qB9X-A6uJlqz0&libraries=places&callback=initAutocomplete"></script>
 </body>
 </html>

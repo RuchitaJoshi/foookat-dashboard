@@ -102,12 +102,32 @@
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                                {{ Form::label('status', 'Status:', ['class' => 'col-sm-2 control-label']) }}
+                                {{ Form::label('membership_plan', 'Membership Plan:', ['class' => 'col-sm-2 control-label']) }}
+                                <div class="col-sm-10">
+                                    {{ Form::label('membership_plan', $business->membership_plan, ['class' => 'control-label']) }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                {{ Form::label('active', 'Active:', ['class' => 'col-sm-2 control-label']) }}
                                 <div style="text-align:left" class="col-sm-10 control-label">
                                     @if ($business->active == 1)
                                         <span class="label label-primary">Active</span>
                                     @else
                                         <span class="label label-danger">Inactive</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                {{ Form::label('status', 'Status:', ['class' => 'col-sm-2 control-label']) }}
+                                <div style="text-align:left" class="col-sm-10 control-label">
+                                    @if ($business->status == 'Pending')
+                                        <span class="label label-warning">Pending</span>
+                                    @elseif ($business->status == 'Approved')
+                                        <span class="label label-primary">Approved</span>
+                                    @else
+                                        <span class="label label-danger">Rejected</span>
                                     @endif
                                 </div>
                             </div>
@@ -141,7 +161,7 @@
                             <div class="form-group">
                                 {{ Form::label('name', 'Name:', ['class' => 'col-sm-2 control-label']) }}
                                 <div class="col-sm-10">
-                                    {{ Form::label('name', $business->owner_name, ['class' => 'control-label']) }}
+                                    {{ Form::label('name', null, ['class' => 'control-label']) }}
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>

@@ -29,7 +29,7 @@
 
                         @include('errors.list')
 
-                        {!! Form::open(array('class' => 'form-horizontal', 'route' => 'admins.store')) !!}
+                        {!! Form::open(array('class' => 'form-horizontal', 'enctype' => 'multipart/form-data', 'route' => 'admins.store')) !!}
 
                         @include('partials.forms.admin-form',  ['showStatusSection' => 'No', 'submitButtonText' => 'Create Admin'])
 

@@ -16,13 +16,15 @@ class Store extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'overview', 'address', 'city', 'state', 'zip_code', 'latitude', 'longitude', 'email', 'mobile_number' ,'phone_number', 'business_id', 'note', 'active'
+        'name', 'overview', 'address', 'city', 'state', 'zip_code', 'latitude', 'longitude', 'email', 'mobile_number' ,'phone_number', 'business_id', 'note', 'active', 'status'
     ];
 
     protected $dates = ['deleted_at'];
 
     /**
      * Get created at attribute
+     * @param $value
+     * @return string
      */
     public function getCreatedAtAttribute($value)
     {
@@ -31,6 +33,8 @@ class Store extends Model
 
     /**
      * Get deleted at attribute
+     * @param $value
+     * @return null|string
      */
     public function getDeletedAtAttribute($value)
     {

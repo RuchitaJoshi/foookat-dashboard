@@ -34,7 +34,7 @@
 
                         {!! Form::model($business, array('method' => 'PATCH', 'class' => 'form-horizontal', 'route' => ['businesses.update',$business->id])) !!}
 
-                        @include('partials.forms.business-form', ['showOwnerSection' => 'No', 'showStatusSection' => 'Yes', 'submitButtonText' => 'Update Business'])
+                        @include('partials.forms.business-form', ['showOwnerSection' => 'No', 'showActiveSection' => 'Yes', 'showStatusSection' => 'Yes', 'submitButtonText' => 'Update Business'])
 
                         {!! Form::close() !!}
                     </div>
