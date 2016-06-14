@@ -3,7 +3,7 @@
 @section('content')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>Stores</h2>
+            <h2>Create Store</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{ route('dashboard') }}">Dashboard</a>
@@ -38,9 +38,9 @@
 
                         @include('errors.list')
 
-                        {!! Form::open(array('class' => 'form-horizontal', 'route' => ['businesses.stores.store', $business->id])) !!}
+                        {!! Form::open(array('class' => 'form-horizontal', 'files' => true, 'route' => ['businesses.stores.store', $business->id])) !!}
 
-                        @include('partials.forms.store-form',  ['showActiveSection' => 'No', 'showStatusSection' => 'No', 'submitButtonText' => 'Create Store'])
+                        @include('partials.forms.store-form',  ['showActiveSection' => 'No', 'showApprovedSection' => 'No', 'submitButtonText' => 'Create Store'])
 
                         {!! Form::close() !!}
                     </div>

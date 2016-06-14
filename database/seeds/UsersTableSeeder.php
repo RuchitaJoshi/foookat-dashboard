@@ -20,6 +20,8 @@ class UsersTableSeeder extends Seeder
                 'password' =>'password',
                 'mobile_number' =>  '7043307711',
                 'profile_picture' => 'http://i1.wp.com/www.techrepublic.com/bundles/techrepubliccore/images/icons/standard/icon-user-default.png',
+                'date_of_birth' =>  '1990-06-04',
+                'gender'   =>  'Male',
                 'active'    =>  TRUE,
                 'remember_token' => null
             ],
@@ -29,6 +31,8 @@ class UsersTableSeeder extends Seeder
                 'password' => 'password',
                 'mobile_number' =>  '7043307711',
                 'profile_picture' => 'http://i1.wp.com/www.techrepublic.com/bundles/techrepubliccore/images/icons/standard/icon-user-default.png',
+                'date_of_birth' =>  '1990-06-01',
+                'gender'   =>  'Male',
                 'active'    =>  TRUE,
                 'remember_token' => null
             ]

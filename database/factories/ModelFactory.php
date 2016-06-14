@@ -16,13 +16,15 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'name' => $faker->name,
         'email' => $faker->email,
         'password' => Hash::make('password'),
+        'date_of_birth' => $faker->date(),
+        'gender' => $faker->randomElement(['Male','Female']),
         'active' => TRUE
     ];
 });
 
 
 $factory->define(App\Business::class, function (Faker\Generator $faker) {
-    $types = ["Retail", "Services", "Ratail and Services"];
+    $types = ["Retail", "Services", "Retail and Services"];
 
     return [
         'name' => $faker->name,

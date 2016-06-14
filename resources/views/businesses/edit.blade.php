@@ -3,7 +3,7 @@
 @section('content')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>{{ $business->name }}</h2>
+            <h2>Edit {{ $business->name }}</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{ route('dashboard') }}">Dashboard</a>
@@ -12,10 +12,13 @@
                     <a>Businesses</a>
                 </li>
                 <li>
-                    <a href="{{ route('admins.all') }}">All</a>
+                    <a href="{{ route('businesses.all') }}">All</a>
                 </li>
                 <li class="active">
-                    <strong>{{ $business->name }}</strong>
+                    <a href="{{ route('businesses.show', $business->id) }}">{{ $business->name }}</a>
+                </li>
+                <li class="active">
+                    <strong>Edit</strong>
                 </li>
             </ol>
         </div>
@@ -32,9 +35,9 @@
 
                         @include('errors.list')
 
-                        {!! Form::model($business, array('method' => 'PATCH', 'class' => 'form-horizontal', 'route' => ['businesses.update',$business->id])) !!}
+                        {!! Form::model($business, array('method' => 'PATCH', 'class' => 'form-horizontal', 'files' => true, 'route' => ['businesses.update',$business->id])) !!}
 
-                        @include('partials.forms.business-form', ['showOwnerSection' => 'No', 'showActiveSection' => 'Yes', 'showStatusSection' => 'Yes', 'submitButtonText' => 'Update Business'])
+                        @include('partials.forms.business-form', ['showOwnerSection' => 'No', 'showActiveSection' => 'Yes', 'showApprovedSection' => 'Yes', 'submitButtonText' => 'Update Business'])
 
                         {!! Form::close() !!}
                     </div>

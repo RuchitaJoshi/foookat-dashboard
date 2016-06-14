@@ -3,7 +3,7 @@
 @section('content')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>{{ $user->name }}</h2>
+            <h2>Edit {{ $user->name }}</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{ route('dashboard') }}">Dashboard</a>
@@ -15,7 +15,10 @@
                     <a href="{{ route('users.all') }}">All</a>
                 </li>
                 <li class="active">
-                    <strong>{{ $user->name }}</strong>
+                    <a href="{{ route('users.show', $user->id) }}">{{ $user->name }}</a>
+                </li>
+                <li class="active">
+                    <strong>Edit</strong>
                 </li>
             </ol>
         </div>
@@ -32,7 +35,7 @@
 
                         @include('errors.list')
 
-                        {!! Form::model($user, array('method' => 'PATCH', 'class' => 'form-horizontal', 'route' => ['users.update',$user->id])) !!}
+                        {!! Form::model($user, array('method' => 'PATCH', 'class' => 'form-horizontal', 'files' => true, 'route' => ['users.update',$user->id])) !!}
 
                         @include('partials.forms.user-form', ['showStatusSection' => 'Yes', 'submitButtonText' => 'Update User'])
 

@@ -27,6 +27,10 @@ class MembershipPlansTableSeeder extends Seeder
                 'name' => 'Premium',
                 'details' => '10 Stores, Unlimited Deals, Detailed Reports, Access to Customer Engagement, Foookat Promotions',
                 'amount' => 999
+            ],
+            [
+                'name' => 'Commission',
+                'details' => 'Per deal commission'
             ]
         ];
 

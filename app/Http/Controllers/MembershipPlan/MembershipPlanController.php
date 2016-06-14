@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\MembershipPlan;
 
+use App\Category;
 use App\MembershipPlan;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -20,12 +21,14 @@ class MembershipPlanController extends Controller
     /**
      * Get all categories
      *
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function all()
     {
-        $membershipPlans = MembershipPlan::withTrashed()->latest()->paginate(10);
+        $membershipPlans = MembershipPlan::withTrashed()->get();
 
-        return view('membershipPlans.all', ['membershipPlans' => $membershipPlans]);
+        $categories = Category::all();
+
+        return view('membershipPlans.all', ['membershipPlans' => $membershipPlans, 'categories' => $categories]);
     }
 }

@@ -29,7 +29,7 @@ class LocationController extends Controller
 
     /**
      * @param $id
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showState($id)
     {
@@ -39,7 +39,7 @@ class LocationController extends Controller
     }
 
     /**
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function createState()
     {
@@ -48,7 +48,8 @@ class LocationController extends Controller
 
     /**
      * @param StateRequest $request
-     * @return mixed
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function storeState(StateRequest $request)
     {
@@ -61,7 +62,7 @@ class LocationController extends Controller
 
     /**
      * @param $id
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function editState($id)
     {
@@ -73,7 +74,7 @@ class LocationController extends Controller
     /**
      * @param $id
      * @param StateRequest $request
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function updateState($id, StateRequest $request)
     {
@@ -88,8 +89,7 @@ class LocationController extends Controller
 
     /**
      * @param $id
-     * @return mixed
-     * @throws \Exception
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroyState($id)
     {
@@ -101,7 +101,7 @@ class LocationController extends Controller
 
                 Flash::success('State has been successfully deleted.');
 
-                return redirect(route('locations.states.all'));
+                return redirect(route('locations.states.show', $state->id));
             } else {
                 return Response::view('errors.403');
             }
@@ -111,7 +111,7 @@ class LocationController extends Controller
     /**
      * Get all cities
      *
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function cities()
     {
@@ -122,7 +122,7 @@ class LocationController extends Controller
 
     /**
      * @param $id
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showCity($id)
     {
@@ -132,7 +132,7 @@ class LocationController extends Controller
     }
 
     /**
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function createCity()
     {
@@ -143,7 +143,7 @@ class LocationController extends Controller
 
     /**
      * @param CityRequest $request
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function storeCity(CityRequest $request)
     {
@@ -158,7 +158,7 @@ class LocationController extends Controller
 
     /**
      * @param $id
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function editCity($id)
     {
@@ -174,7 +174,7 @@ class LocationController extends Controller
     /**
      * @param $id
      * @param CityRequest $request
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function updateCity($id, CityRequest $request)
     {
@@ -191,8 +191,7 @@ class LocationController extends Controller
 
     /**
      * @param $id
-     * @return mixed
-     * @throws \Exception
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroyCity($id)
     {
@@ -204,7 +203,7 @@ class LocationController extends Controller
 
                 Flash::success('City has been successfully deleted.');
 
-                return redirect(route('locations.cities.all'));
+                return redirect(route('locations.cities.show', $city->id));
             } else {
                 return Response::view('errors.403');
             }

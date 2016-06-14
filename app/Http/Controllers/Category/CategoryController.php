@@ -24,7 +24,7 @@ class CategoryController extends Controller
     /**
      * Get all categories
      *
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function all()
     {
@@ -35,7 +35,7 @@ class CategoryController extends Controller
 
     /**
      * @param $id
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
@@ -45,7 +45,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -54,7 +54,7 @@ class CategoryController extends Controller
 
     /**
      * @param CategoryRequest $request
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(CategoryRequest $request)
     {
@@ -66,12 +66,12 @@ class CategoryController extends Controller
 
         Flash::success($category->name . ' has been successfully created.');
 
-        return redirect('categories/all');
+        return redirect(route('categories.all'));
     }
 
     /**
      * @param $id
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
@@ -83,7 +83,7 @@ class CategoryController extends Controller
     /**
      * @param $id
      * @param CategoryRequest $request
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update($id, CategoryRequest $request)
     {
@@ -97,13 +97,12 @@ class CategoryController extends Controller
 
         Flash::success($category->name . ' has been successfully updated.');
 
-        return redirect('categories/all');
+        return redirect(route('categories.all'));
     }
 
     /**
      * @param $id
-     * @return mixed
-     * @throws \Exception
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
@@ -115,7 +114,7 @@ class CategoryController extends Controller
 
                 Flash::success('Category has been successfully deleted.');
 
-                return redirect('categories/all');
+                return redirect(route('categories.show', $category->id));
             } else {
                 return Response::view('errors.403');
             }

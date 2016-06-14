@@ -45,51 +45,17 @@
                                 <tbody>
                                 @if(count($cities))
                                     @foreach($cities as $city)
-                                        @if (empty($city->deleted_at))
-                                            <tr>
-                                                <td class="center-table">{{ $city->name }}</td>
-                                                <td class="center-table">@if ($city->state) {{ $city->state->name }} @else Unavailable @endif</td>
-                                                <td class="center-table">{{ $city->created_at }}</td>
-                                                <td class="center-table">
-                                                    <a href="{{ route('locations.cities.show', $city->id) }}" class="btn btn-white btn-sm"><i
-                                                                class="fa fa-folder-open"></i> View </a>
-                                                    <a href="{{ route('locations.cities.edit', $city->id) }}"
-                                                       class="btn btn-white btn-sm"><i class="fa fa-pencil"></i>
-                                                        Edit </a>
-                                                    {!! Form::open(array('method' => 'DELETE', 'style' => 'display: inline-block', 'route' => ['locations.cities.destroy',$city->id])) !!}
-                                                    <button class="btn btn-sm btn-danger" type="button"
-                                                            data-toggle="modal"
-                                                            data-target="#confirmDelete"
-                                                            data-title="Confirm Delete City"
-                                                            data-message="Are you sure you want to delete this city?">
-                                                        <i class="fa fa-trash"></i> Delete
-                                                    </button>
-                                                    {!! Form::close() !!}
-                                                </td>
-                                            </tr>
-                                        @else
-                                            <tr class="danger">
-                                                <td class="center-table">{{ $city->name }}</td>
-                                                <td class="center-table">@if ($city->state) {{ $city->state->name }} @else Unavailable @endif</td>
-                                                <td class="center-table">{{ $city->created_at }}</td>
-                                                <td class="center-table">
-                                                    <a href="{{ route('locations.cities.show', $city->id) }}" class="btn btn-white btn-sm"><i
-                                                                class="fa fa-folder-open"></i> View </a>
-                                                    <a href="{{ route('locations.cities.edit', $city->id) }}"
-                                                       class="btn btn-white btn-sm"><i class="fa fa-pencil"></i>
-                                                        Edit </a>
-                                                    {!! Form::open(array('method' => 'DELETE', 'style' => 'display: inline-block', 'route' => ['locations.cities.destroy',$city->id])) !!}
-                                                    <button class="btn btn-sm btn-danger" type="button"
-                                                            data-toggle="modal"
-                                                            data-target="#confirmDelete"
-                                                            data-title="Confirm Delete City"
-                                                            data-message="Are you sure you want to delete this city?">
-                                                        <i class="fa fa-trash"></i> Delete
-                                                    </button>
-                                                    {!! Form::close() !!}
-                                                </td>
-                                            </tr>
-                                        @endif
+                                        <tr>
+                                            <td class="center-table">{{ $city->name }}</td>
+                                            <td class="center-table">@if ($city->state) {{ $city->state->name }} @else
+                                                    Unavailable @endif</td>
+                                            <td class="center-table">{{ $city->created_at }}</td>
+                                            <td class="center-table">
+                                                <a href="{{ route('locations.cities.show', $city->id) }}"
+                                                   class="btn btn-white btn-sm"><i
+                                                            class="fa fa-folder-open"></i> View </a>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 @else
                                     <tr>
@@ -109,7 +75,5 @@
             </div>
         </div>
     </div>
-
-    @include('partials.modals.delete')
 
 @endsection

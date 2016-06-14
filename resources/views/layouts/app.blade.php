@@ -10,6 +10,7 @@
     <link href="{{ URL::asset('css/inspinia/style.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/custom/style.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/plugins/bootstrap-toggle/bootstrap-toggle.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/plugins/datapicker/datepicker3.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/plugins/jqTimepicker/jquery.timepicker.css') }}" rel="stylesheet">
 </head>
 <body class="pace-done skin-1">
@@ -22,7 +23,8 @@
                     <div class="dropdown profile-element">
                         <span>
                             <img alt="image" class="img-table" height="50" width="50"
-                                 src="{{ Auth::user()->profile_picture }}" >
+                                 @if (Auth::user()->profile_picture) src="{{ Auth::user()->profile_picture }}"
+                                 @else src="{{ URL::asset('images/uploads/avatars/default.png') }}" @endif >
                         </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear"> <span class="block text-xs m-t-xs"> <strong
@@ -35,7 +37,8 @@
                     </div>
                     <div class="logo-element">
                         <img alt="image" class="img-table" height="50" width="50"
-                             src="{{ Auth::user()->profile_picture }}">
+                             @if (Auth::user()->profile_picture) src="{{ Auth::user()->profile_picture }}"
+                             @else src="{{ URL::asset('images/uploads/avatars/default.png') }}" @endif >
                     </div>
                 </li>
 
@@ -80,6 +83,7 @@
 <script src="{{ URL::asset('js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ URL::asset('js/plugins/pace/pace.min.js') }}"></script>
 <script src="{{ URL::asset('js/plugins/bootstrap-toggle/bootstrap-toggle.min.js') }}"></script>
+<script src="{{ URL::asset('js/plugins/datapicker/bootstrap-datepicker.js') }}"></script>
 <script src="{{ URL::asset('js/plugins/jqTimepicker/jquery.timepicker.min.js') }}"></script>
 <script src="{{ URL::asset('js/plugins/tinymce/tinymce.min.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyC0dxOmaA4-s1ad3H_Ci3qB9X-A6uJlqz0&libraries=places&callback=initAutocomplete"></script>

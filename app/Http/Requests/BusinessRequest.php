@@ -40,11 +40,12 @@ class BusinessRequest extends Request
         {
             $rules = [
                 'name' => 'required|min:2|max:255',
+                'logo' => 'required',
                 'type' => 'required',
                 'state' => 'required',
                 'city' => 'required',
                 'address' => 'required',
-                'zip_code' => 'required',
+                'zip_code' => 'required|numeric',
                 'membership_plan' => 'required'
             ];
         }
@@ -56,11 +57,12 @@ class BusinessRequest extends Request
                 'mobile_number' => 'required',
                 'password' => 'required|confirmed|min:8',
                 'name' => 'required|min:2|max:255',
+                'logo' => 'required',
                 'type' => 'required',
                 'state' => 'required',
                 'city' => 'required',
                 'address' => 'required',
-                'zip_code' => 'required',
+                'zip_code' => 'required|numeric',
                 'membership_plan' => 'required'
             ];
         }

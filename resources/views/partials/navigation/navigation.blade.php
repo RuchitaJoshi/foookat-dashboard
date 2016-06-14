@@ -18,6 +18,22 @@
     </ul>
 </li>
 
+<li class="{{ Request::is('stores/*') ? 'active' : '' }}">
+    <a href="#"><i class="fa fa-star"></i> <span class="nav-label">Stores</span><span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level collapse">
+        <li class="{{ Request::is('stores/all') || Request::is('stores/all/*') ? 'active' : '' }}"><a href="{{ route('stores.all') }}">All</a></li>
+        <li class="{{ Request::is('stores/create') ? 'active' : '' }}"><a href="{{ route('stores.create') }}">Create</a></li>
+    </ul>
+</li>
+
+<li class="{{ Request::is('deals/*') ? 'active' : '' }}">
+    <a href="#"><i class="fa fa-star"></i> <span class="nav-label">Deals</span><span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level collapse">
+        <li class="{{ Request::is('deals/all') || Request::is('deals/all/*') ? 'active' : '' }}"><a href="{{ route('deals.all') }}">All</a></li>
+        <li class="{{ Request::is('deals/create') ? 'active' : '' }}"><a href="{{ route('deals.create') }}">Create</a></li>
+    </ul>
+</li>
+
 <li class="{{ Request::is('users/*') ? 'active' : '' }}">
     <a href="#"><i class="fa fa-users"></i> <span class="nav-label">Users</span><span class="fa arrow"></span></a>
     <ul class="nav nav-second-level collapse">
@@ -49,10 +65,18 @@
 </li>
 
 <li class="{{ Request::is('categories/*') ? 'active' : '' }}">
-    <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">Categories</span><span class="fa arrow"></span></a>
+    <a href="#"><i class="fa fa-star"></i> <span class="nav-label">Categories</span><span class="fa arrow"></span></a>
     <ul class="nav nav-second-level collapse">
         <li class="{{ Request::is('categories/all') || Request::is('categories/all/*') ? 'active' : '' }}"><a href="{{ route('categories.all') }}">All</a></li>
         <li class="{{ Request::is('categories/create') ? 'active' : '' }}"><a href="{{ route('categories.create') }}">Create</a></li>
+    </ul>
+</li>
+
+<li class="{{ Request::is('leagues/*') ? 'active' : '' }}">
+    <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">Store Leagues</span><span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level collapse">
+        <li class="{{ Request::is('leagues/all') || Request::is('leagues/all/*') ? 'active' : '' }}"><a href="{{ route('leagues.all') }}">All</a></li>
+        <li class="{{ Request::is('leagues/create') ? 'active' : '' }}"><a href="{{ route('leagues.create') }}">Create</a></li>
     </ul>
 </li>
 

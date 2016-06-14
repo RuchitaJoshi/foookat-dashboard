@@ -25,11 +25,22 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
-                    <div style="min-height:60px;" class="ibox-title">
+                    <div style="min-height:65px;" class="ibox-title">
                         <h5>{{ $category->name }}</h5>
-                        <a href="{{ route('categories.edit', $category->id) }}"
-                           class="btn btn-success btn-sm" style="float: right"><i class="fa fa-pencil"></i>
-                            Edit </a>
+                        <div style="display:inline-block;float: right">
+                            <a href="{{ route('categories.edit', $category->id) }}"
+                               class="btn btn-success btn-sm"><i class="fa fa-pencil"></i>
+                                Edit </a>
+                            {!! Form::open(array('method' => 'DELETE', 'style' => 'display: inline-block', 'route' => ['categories.destroy',$category->id])) !!}
+                            <button class="btn btn-sm btn-danger" type="button"
+                                    data-toggle="modal"
+                                    data-target="#confirmDelete"
+                                    data-title="Confirm Delete Category"
+                                    data-message="Are you sure you want to delete this category?">
+                                <i class="fa fa-trash"></i> Delete
+                            </button>
+                            {!! Form::close() !!}
+                        </div>
                     </div>
                     <div class="ibox-content">
                         <form class="form-horizontal">
@@ -71,6 +82,13 @@
                                     {{ Form::label('created_at', $category->created_at, ['class' => 'control-label']) }}
                                 </div>
                             </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                {{ Form::label('updated_at', 'Updated At:', ['class' => 'col-sm-2 control-label']) }}
+                                <div class="col-sm-10">
+                                    {{ Form::label('updated_at', $category->updated_at, ['class' => 'control-label']) }}
+                                </div>
+                            </div>
                             @if (!empty($category->deleted_at))
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
@@ -86,5 +104,7 @@
             </div>
         </div>
     </div>
+
+    @include('partials.modals.delete')
 
 @endsection

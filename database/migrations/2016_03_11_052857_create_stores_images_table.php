@@ -15,10 +15,15 @@ class CreateStoresImagesTable extends Migration
         Schema::create('stores_images', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('store_id')->unsigned();
-            $table->string('image');
-            $table->boolean('is_cover');
+            $table->string('image1')->nullable();
+            $table->boolean('cover_image1')->default(false);;
+            $table->string('image2')->nullable();
+            $table->boolean('cover_image2')->default(false);;
+            $table->string('image3')->nullable();
+            $table->boolean('cover_image3')->default(false);;
             $table->foreign('store_id')->references('id')->on('stores')->onUpdate('cascade')->onDelete('cascade');
-            $table->timestamp('created_at');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

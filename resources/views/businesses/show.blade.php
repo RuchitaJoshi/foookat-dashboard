@@ -38,10 +38,15 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div style="min-height:65px;" class="ibox-title">
                         <h5>{{ $business->name }}</h5>
+                        @if (!empty($business->deleted_at))
+                            <div style="text-align:left" class="col-sm-2 control-label">
+                                <span class="label label-danger">Deleted</span>
+                            </div>
+                        @endif
                         <div style="display:inline-block;float: right">
                             <a href="{{ route('businesses.edit', $business->id) }}"
                                class="btn btn-success btn-sm"><i class="fa fa-pencil"></i>
@@ -60,9 +65,18 @@
                     <div class="ibox-content">
                         <form class="form-horizontal">
                             <div class="form-group">
-                                {{ Form::label('name', 'Name:', ['class' => 'col-sm-2 control-label']) }}
+                                {{ Form::label('name', 'Business Name:', ['class' => 'col-sm-2 control-label']) }}
                                 <div class="col-sm-10">
                                     {{ Form::label('name', $business->name, ['class' => 'control-label']) }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                {{ Form::label('logo', 'Business Logo:', ['class' => 'col-sm-2 control-label']) }}
+                                <div class="col-sm-10">
+                                    <img style="width:150px;height:150px;float:left;" id="img_logo"
+                                         @if ($business->logo) src="{{ $business->logo }}"
+                                         @else src="{{ URL::asset('images/uploads/avatars/logo.png') }}" @endif>
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -120,11 +134,11 @@
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                                {{ Form::label('status', 'Status:', ['class' => 'col-sm-2 control-label']) }}
+                                {{ Form::label('approved', 'Approved:', ['class' => 'col-sm-2 control-label']) }}
                                 <div style="text-align:left" class="col-sm-10 control-label">
-                                    @if ($business->status == 'Pending')
+                                    @if ($business->approved == 'Pending')
                                         <span class="label label-warning">Pending</span>
-                                    @elseif ($business->status == 'Approved')
+                                    @elseif ($business->approved == 'Approved')
                                         <span class="label label-primary">Approved</span>
                                     @else
                                         <span class="label label-danger">Rejected</span>
@@ -133,9 +147,23 @@
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
+                                {{ Form::label('note', 'Note:', ['class' => 'col-sm-2 control-label']) }}
+                                <div class="col-sm-10">
+                                    {{ Form::textarea('note', $business->note, ['class' => 'form-control', 'readonly']) }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
                                 {{ Form::label('created_at', 'Created At:', ['class' => 'col-sm-2 control-label']) }}
                                 <div class="col-sm-10">
                                     {{ Form::label('created_at', $business->created_at, ['class' => 'control-label']) }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                {{ Form::label('updated_at', 'Updated At:', ['class' => 'col-sm-2 control-label']) }}
+                                <div class="col-sm-10">
+                                    {{ Form::label('updated_at', $business->updated_at, ['class' => 'control-label']) }}
                                 </div>
                             </div>
                             @if (!empty($business->deleted_at))
@@ -151,7 +179,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div style="min-height:65px;" class="ibox-title">
                         <h5>Owner: {{ $business->owner_name }}</h5>
@@ -161,7 +191,7 @@
                             <div class="form-group">
                                 {{ Form::label('name', 'Name:', ['class' => 'col-sm-2 control-label']) }}
                                 <div class="col-sm-10">
-                                    {{ Form::label('name', null, ['class' => 'control-label']) }}
+                                    {{ Form::label('name', $business->owner_name, ['class' => 'control-label']) }}
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -175,7 +205,7 @@
                             <div class="form-group">
                                 {{ Form::label('mobile_number', 'Mobile Number:', ['class' => 'col-sm-2 control-label']) }}
                                 <div class="col-sm-10">
-                                    {{ Form::label('mobile_number', $business->owner_mobile_number, ['class' => 'control-label']) }}
+                                    {{ Form::label('mobile_number', '+91'.$business->owner_mobile_number, ['class' => 'control-label']) }}
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -187,6 +217,20 @@
                                     @else
                                         <span class="label label-danger">Inactive</span>
                                     @endif
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                {{ Form::label('created_at', 'Created At:', ['class' => 'col-sm-2 control-label']) }}
+                                <div class="col-sm-10">
+                                    {{ Form::label('created_at', $business->owner_created_at, ['class' => 'control-label']) }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                {{ Form::label('updated_at', 'Updated At:', ['class' => 'col-sm-2 control-label']) }}
+                                <div class="col-sm-10">
+                                    {{ Form::label('updated_at', $business->owner_updated_at, ['class' => 'control-label']) }}
                                 </div>
                             </div>
                             @if (!empty($business->owner_deleted_at))

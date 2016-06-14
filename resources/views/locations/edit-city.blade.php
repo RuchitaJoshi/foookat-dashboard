@@ -3,7 +3,7 @@
 @section('content')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>{{ $city->name }}</h2>
+            <h2>Edit {{ $city->name }}</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{ route('dashboard') }}">Dashboard</a>
@@ -17,8 +17,11 @@
                 <li>
                     <a href="{{ route('locations.cities.all') }}">All</a>
                 </li>
+                <li>
+                    <a href="{{ route('locations.cities.show', $city->id) }}">{{ $city->name }}</a>
+                </li>
                 <li class="active">
-                    <strong>{{ $city->name }}</strong>
+                    <strong>Edit</strong>
                 </li>
             </ol>
         </div>

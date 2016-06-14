@@ -22,6 +22,8 @@ class Category extends Model
 
     /**
      * Get created at attribute
+     * @param $value
+     * @return string
      */
     public function getCreatedAtAttribute($value)
     {
@@ -29,7 +31,19 @@ class Category extends Model
     }
 
     /**
+     * Get updated at attribute
+     * @param $value
+     * @return string
+     */
+    public function getUpdatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->setTimezone(config('constants.default-timezone'))->format('Y-m-d H:i:s');
+    }
+
+    /**
      * Get deleted at attribute
+     * @param $value
+     * @return null|string
      */
     public function getDeletedAtAttribute($value)
     {
@@ -39,4 +53,11 @@ class Category extends Model
             return Carbon::parse($value)->setTimezone(config('constants.default-timezone'))->format('Y-m-d H:i:s');
     }
 
+    /**
+     * Get the deals associated with category.
+     */
+    public function deals()
+    {
+        return $this->belongsToMany('App\Deals','deals_categories')->withTimestamps();
+    }
 }

@@ -33,12 +33,13 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th class="center-table">Name</th>
+                                    <th class="center-table"></th>
+                                    <th class="center-table">Business Name</th>
                                     <th class="center-table">Owner</th>
                                     <th class="center-table">Address</th>
                                     <th class="center-table">Zip Code</th>
                                     <th class="center-table">Type</th>
-                                    <th class="center-table">Status</th>
+                                    <th class="center-table">Approved</th>
                                     <th class="center-table">Created At</th>
                                     <th class="center-table">Actions</th>
                                 </tr>
@@ -46,57 +47,37 @@
                                 <tbody>
                                 @if(count($businesses))
                                     @foreach($businesses as $business)
-                                        @if (empty($business->deleted_at))
-                                            <tr>
-                                                <td class="center-table">{{ $business->name }}</td>
-                                                <td class="center-table">{{ $business->owner_name }}</td>
-                                                <td class="center-table">{{ $business->address }}</td>
-                                                <td class="center-table">{{ $business->zip_code }}</td>
-                                                <td class="center-table">{{ $business->type }}</td>
-                                                <td class="center-table">
-                                                    @if ($business->status == 'Pending')
-                                                        <span class="label label-warning">Pending</span>
-                                                    @elseif ($business->status == 'Approved')
-                                                        <span class="label label-primary">Approved</span>
-                                                    @else
-                                                        <span class="label label-danger">Rejected</span>
-                                                    @endif
-                                                </td>
-                                                <td class="center-table">{{ $business->created_at }}</td>
-                                                <td class="center-table">
-                                                    <a href="{{ route('businesses.show', $business->id) }}"
-                                                       class="btn btn-white btn-sm"><i
-                                                                class="fa fa-folder-open"></i> View </a>
-                                                </td>
-                                            </tr>
-                                        @else
-                                            <tr class="danger">
-                                                <td class="center-table">{{ $business->name }}</td>
-                                                <td class="center-table">{{ $business->owner_name }}</td>
-                                                <td class="center-table">{{ $business->address }}</td>
-                                                <td class="center-table">{{ $business->zip_code }}</td>
-                                                <td class="center-table">{{ $business->type }}</td>
-                                                <td class="center-table">
-                                                    @if ($business->status == 'Pending')
-                                                        <span class="label label-warning">Pending</span>
-                                                    @elseif ($business->status == 'Approved')
-                                                        <span class="label label-primary">Approved</span>
-                                                    @else
-                                                        <span class="label label-danger">Rejected</span>
-                                                    @endif
-                                                </td>
-                                                <td class="center-table">{{ $business->created_at }}</td>
-                                                <td class="center-table">
-                                                    <a href="{{ route('businesses.show', $business->id) }}"
-                                                       class="btn btn-white btn-sm"><i
-                                                                class="fa fa-folder-open"></i> View </a>
-                                                </td>
-                                            </tr>
-                                        @endif
+                                        <tr>
+                                            <td class="center-table">
+                                                <img class="img-table"
+                                                     @if ($business->logo) src="{{ $business->logo }}"
+                                                     @else src="{{ URL::asset('images/uploads/avatars/logo.png') }}" @endif>
+                                            </td>
+                                            <td class="center-table">{{ $business->name }}</td>
+                                            <td class="center-table">{{ $business->owner_name }}</td>
+                                            <td class="center-table">{{ $business->address }}</td>
+                                            <td class="center-table">{{ $business->zip_code }}</td>
+                                            <td class="center-table">{{ $business->type }}</td>
+                                            <td class="center-table">
+                                                @if ($business->approved == 'Pending')
+                                                    <span class="label label-warning">Pending</span>
+                                                @elseif ($business->approved == 'Approved')
+                                                    <span class="label label-primary">Approved</span>
+                                                @else
+                                                    <span class="label label-danger">Rejected</span>
+                                                @endif
+                                            </td>
+                                            <td class="center-table">{{ $business->created_at }}</td>
+                                            <td class="center-table">
+                                                <a href="{{ route('businesses.show', $business->id) }}"
+                                                   class="btn btn-white btn-sm"><i
+                                                            class="fa fa-folder-open"></i> View </a>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td class="text-center" colspan="8">
+                                        <td class="text-center" colspan="9">
                                             Currently there are no businesses in the system.
                                         </td>
                                     </tr>

@@ -40,14 +40,14 @@ class StoreRequest extends Request
         {
             $rules = [
                 'name' => 'required|min:2|max:255',
-                'overview' => 'required|min:2|max:255',
-                'league' => 'required',
-                'mobile_number' => 'required',
-                'phone_number' => 'required',
+                'address' => 'required',
+                'zip_code' => 'required|numeric',
                 'state' => 'required',
                 'city' => 'required',
-                'address' => 'required',
-                'zip_code' => 'required',
+                'email' => 'required|email|max:255',
+                'mobile_number' => 'required',
+                'phone_number' => 'required',
+                'league' => 'required',
                 'mon_open' => 'required',
                 'mon_close' => 'required',
                 'tue_open' => 'required',
@@ -61,21 +61,22 @@ class StoreRequest extends Request
                 'sat_open' => 'required',
                 'sat_close' => 'required',
                 'sun_open' => 'required',
-                'sun_close' => 'required'
+                'sun_close' => 'required',
+                'overview' => 'required'
             ];
         }
         else
         {
             $rules = [
                 'name' => 'required|min:2|max:255',
-                'overview' => 'required|min:2|max:255',
-                'league' => 'required',
-                'mobile_number' => 'required',
-                'phone_number' => 'required',
+                'address' => 'required',
+                'zip_code' => 'required|numeric',
                 'state' => 'required',
                 'city' => 'required',
-                'address' => 'required',
-                'zip_code' => 'required',
+                'email' => 'required|email|max:255',
+                'mobile_number' => 'required',
+                'phone_number' => 'required',
+                'league' => 'required',
                 'mon_open' => 'required',
                 'mon_close' => 'required',
                 'tue_open' => 'required',
@@ -89,7 +90,8 @@ class StoreRequest extends Request
                 'sat_open' => 'required',
                 'sat_close' => 'required',
                 'sun_open' => 'required',
-                'sun_close' => 'required'
+                'sun_close' => 'required',
+                'overview' => 'required'
             ];
         }
 

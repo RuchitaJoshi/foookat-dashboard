@@ -108,6 +108,57 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="col-lg-12">
+                        <h3>Commission Based Plan</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="ibox">
+                            <div class="ibox-content product-box">
+                                <div class="product-desc">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">Commission is charged per claim on each deal.</li>
+                                    </ul>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th class="center-table">Categories</th>
+                                                <th class="center-table">Commissions (%)</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @if(count($categories))
+                                                @foreach($categories as $category)
+                                                    <tr>
+                                                        <td class="center-table">{{ $category->name }}</td>
+                                                        <td class="center-table">{{ $category->commission }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <tr>
+                                                    <td class="text-center" colspan="2">
+                                                        Currently there are no categories and commissions available in the system.
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="m-t text-righ">
+                                        <a href="{{ route('businesses.create', ['plan' => $membershipPlans[3]->name]) }}"
+                                           class="btn btn-xs btn-outline btn-primary">Sign
+                                            Up <i class="fa fa-long-arrow-right"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 @endsection

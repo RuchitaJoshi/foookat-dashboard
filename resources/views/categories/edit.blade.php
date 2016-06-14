@@ -3,7 +3,7 @@
 @section('content')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>{{ $category->name }}</h2>
+            <h2>Edit {{ $category->name }}</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{ route('dashboard') }}">Dashboard</a>
@@ -14,8 +14,11 @@
                 <li>
                     <a href="{{ route('categories.all') }}">All</a>
                 </li>
+                <li>
+                    <a href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
+                </li>
                 <li class="active">
-                    <strong>{{ $category->name }}</strong>
+                    <strong>Edit</strong>
                 </li>
             </ol>
         </div>

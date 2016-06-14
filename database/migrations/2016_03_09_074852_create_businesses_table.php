@@ -15,13 +15,14 @@ class CreateBusinessesTable extends Migration
         Schema::create('businesses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('logo')->nullable();
             $table->string('address');
             $table->string('city');
             $table->string('state');
             $table->integer('zip_code');
             $table->string('type');
             $table->boolean('active')->default(false);
-            $table->string('status')->default('Pending');
+            $table->string('approved')->default('Pending');
             $table->text('note')->nullable();
             $table->timestamps();
             $table->softDeletes();

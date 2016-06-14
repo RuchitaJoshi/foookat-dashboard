@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
-    protected $toTruncate = ['users', 'roles', 'categories', 'admins', 'states', 'cities', 'leagues', 'businesses', 'membership_plans'];
+    protected $toTruncate = ['users', 'roles', 'categories', 'admins', 'states', 'cities', 'leagues', 'membership_plans', 'businesses'];
 
     /**
      * Run the database seeds.
@@ -27,8 +27,8 @@ class DatabaseSeeder extends Seeder
         $this->call('CitiesTableSeeder');
         $this->call('CategoriesTableSeeder');
         $this->call('LeaguesTableSeeder');
-        $this->call('BusinessesTableSeeder');
         $this->call('MembershipPlansTableSeeder');
+        $this->call('BusinessesTableSeeder');
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

@@ -21,7 +21,10 @@
                     <a href="{{ route('businesses.stores', $business->id) }}">Stores</a>
                 </li>
                 <li class="active">
-                    <strong>{{ $store->name }}</strong>
+                    <a href="{{ route('businesses.stores.show', [$business->id, $store->id]) }}">{{ $store->name }}</a>
+                </li>
+                <li class="active">
+                    <strong>Edit</strong>
                 </li>
             </ol>
         </div>
@@ -32,15 +35,15 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Edit Store</h5>
+                        <h5>Edit {{ $store->name }}</h5>
                     </div>
                     <div class="ibox-content">
 
                         @include('errors.list')
 
-                        {!! Form::model($store, array('method' => 'PATCH', 'class' => 'form-horizontal', 'route' => ['businesses.stores.update', $business->id, $store->id])) !!}
+                        {!! Form::model($store, array('method' => 'PATCH', 'class' => 'form-horizontal', 'files' => true, 'route' => ['businesses.stores.update', $business->id, $store->id])) !!}
 
-                        @include('partials.forms.store-form', ['showActiveSection' => 'Yes', 'showStatusSection' => 'Yes', 'submitButtonText' => 'Update Store'])
+                        @include('partials.forms.store-form', ['showActiveSection' => 'Yes', 'showApprovedSection' => 'Yes', 'submitButtonText' => 'Update Store'])
 
                         {!! Form::close() !!}
                     </div>

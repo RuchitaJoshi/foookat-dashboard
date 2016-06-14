@@ -4,10 +4,12 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
-use App\Role;
 use App\User;
+use File;
 use App\Http\Requests;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Response;
 use Laracasts\Flash\Flash;
 
@@ -25,7 +27,7 @@ class UserController extends Controller
     /**
      * Get all users
      *
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function all()
     {
@@ -36,7 +38,7 @@ class UserController extends Controller
 
     /**
      * @param $id
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
@@ -46,7 +48,7 @@ class UserController extends Controller
     }
 
     /**
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -55,7 +57,7 @@ class UserController extends Controller
 
     /**
      * @param UserRequest $request
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(UserRequest $request)
     {
@@ -66,14 +68,30 @@ class UserController extends Controller
             'active' => 1
         ]);
 
+        if ($request->hasFile('profile_picture')) {
+            $profile_picture = $request->file('profile_picture');
+            $filename = $user->id . '_' . time() . '.' . $profile_picture->getClientOriginalExtension();
+            Image::make($profile_picture)->resize(300, 300)->save(public_path('/images/uploads/' . $filename));
+            $s3 = App::make('aws')->createClient('s3');
+            $profile_picture_url = $s3->putObject(array(
+                'Bucket' => env('AWS_BUCKET', ''),
+                'Key' => $filename,
+                'SourceFile' => 'images/uploads/' . $filename,
+            ));
+            $user->update(['profile_picture' => $profile_picture_url['ObjectURL']]);
+            if (File::exists(public_path('/images/uploads/' . $filename))) {
+                File::delete(public_path('/images/uploads/' . $filename));
+            }
+        }
+
         Flash::success($user->name. ' has been successfully created.');
 
-        return redirect('users/all');
+        return redirect(route('users.all'));
     }
 
     /**
      * @param $id
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
@@ -85,7 +103,7 @@ class UserController extends Controller
     /**
      * @param $id
      * @param UserRequest $request
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update($id, UserRequest $request)
     {
@@ -109,14 +127,30 @@ class UserController extends Controller
             ]);
         }
 
+        if ($request->hasFile('profile_picture')) {
+            $profile_picture = $request->file('profile_picture');
+            $filename = $user->id . '_' . time() . '.' . $profile_picture->getClientOriginalExtension();
+            Image::make($profile_picture)->resize(300, 300)->save(public_path('/images/uploads/' . $filename));
+            $s3 = App::make('aws')->createClient('s3');
+            $profile_picture_url = $s3->putObject(array(
+                'Bucket' => env('AWS_BUCKET', ''),
+                'Key' => $filename,
+                'SourceFile' => 'images/uploads/' . $filename,
+            ));
+            $user->update(['profile_picture' => $profile_picture_url['ObjectURL']]);
+            if (File::exists(public_path('/images/uploads/' . $filename))) {
+                File::delete(public_path('/images/uploads/' . $filename));
+            }
+        }
+
         Flash::success($user->name. ' has been successfully updated.');
 
-        return redirect('users/all');
+        return redirect(route('users.all'));
     }
 
     /**
      * @param $id
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Exception
      */
     public function destroy($id)
@@ -129,7 +163,7 @@ class UserController extends Controller
 
                 Flash::success('User has been successfully deleted.');
 
-                return redirect('users/all');
+                return redirect(route('users.show', $user->id));
             } else {
                 return Response::view('errors.403');
             }

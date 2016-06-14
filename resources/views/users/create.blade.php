@@ -29,7 +29,7 @@
 
                         @include('errors.list')
 
-                        {!! Form::open(array('class' => 'form-horizontal', 'route' => 'users.store')) !!}
+                        {!! Form::open(array('class' => 'form-horizontal', 'files' => true, 'route' => 'users.store')) !!}
 
                         @include('partials.forms.user-form',  ['showStatusSection' => 'No', 'submitButtonText' => 'Create User'])
 

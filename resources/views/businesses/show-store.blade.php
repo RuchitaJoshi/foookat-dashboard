@@ -36,7 +36,7 @@
                     </div>
                     <div class="ibox-content">
                         <div style="padding-left: 0px;float: none" class="col-lg-12">
-                            <a href=""
+                            <a href="{{ route('businesses.stores.deals', [$business->id, $store->id]) }}"
                                class="btn btn-info"> Deals </a>
                         </div>
                     </div>
@@ -48,6 +48,11 @@
                 <div class="ibox float-e-margins">
                     <div style="min-height:65px;" class="ibox-title">
                         <h5>{{ $store->name }}</h5>
+                        @if (!empty($store->deleted_at))
+                            <div style="text-align:left" class="col-sm-2 control-label">
+                                <span class="label label-danger">Deleted</span>
+                            </div>
+                        @endif
                         <div style="display:inline-block;float: right">
                             <a href="{{ route('businesses.stores.edit', [$business->id, $store->id]) }}"
                                class="btn btn-success btn-sm"><i class="fa fa-pencil"></i>
@@ -66,16 +71,9 @@
                     <div class="ibox-content">
                         <form class="form-horizontal">
                             <div class="form-group">
-                                {{ Form::label('name', 'Name:', ['class' => 'col-sm-2 control-label']) }}
+                                {{ Form::label('name', 'Store Name:', ['class' => 'col-sm-2 control-label']) }}
                                 <div class="col-sm-10">
                                     {{ Form::label('name', $store->name, ['class' => 'control-label']) }}
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                {{ Form::label('overview', 'Overview:', ['class' => 'col-sm-2 control-label']) }}
-                                <div class="col-sm-10">
-                                    {{ Form::textarea('overview', $store->overview, ['class' => 'form-control', 'readonly']) }}
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -87,9 +85,9 @@
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                                {{ Form::label('city', 'City:', ['class' => 'col-sm-2 control-label']) }}
+                                {{ Form::label('zip_code', 'Zip Code:', ['class' => 'col-sm-2 control-label']) }}
                                 <div class="col-sm-10">
-                                    {{ Form::label('city', $store->city, ['class' => 'control-label']) }}
+                                    {{ Form::label('zip_code', $store->zip_code, ['class' => 'control-label']) }}
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -101,9 +99,9 @@
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                                {{ Form::label('zip_code', 'Zip Code:', ['class' => 'col-sm-2 control-label']) }}
+                                {{ Form::label('city', 'City:', ['class' => 'col-sm-2 control-label']) }}
                                 <div class="col-sm-10">
-                                    {{ Form::label('zip_code', $store->zip_code, ['class' => 'control-label']) }}
+                                    {{ Form::label('city', $store->city, ['class' => 'control-label']) }}
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -152,18 +150,46 @@
                             <div class="form-group">
                                 {{ Form::label('working_hours', 'Working Hours:', ['class' => 'col-sm-2 control-label']) }}
                                 <div class="col-sm-10">
-                                    <div class="input-group m-b"><span style="width: 100px;background-color: #e5e6e7" class="input-group-addon">Mon Open</span><span class="form-control">{{ $store->mon_open }}</span><span class="input-group-addon">AM</span><span style="width: 100px;background-color: #e5e6e7" class="input-group-addon">Mon Close</span><span class="form-control">{{ $store->mon_close }}</span><span class="input-group-addon">PM</span></div>
-                                    <div class="input-group m-b"><span style="width: 100px;background-color: #e5e6e7" class="input-group-addon">Tue Open</span><span class="form-control">{{ $store->tue_open }}</span><span class="input-group-addon">AM</span><span style="width: 100px;background-color: #e5e6e7" class="input-group-addon">Tue Close</span><span class="form-control">{{ $store->tue_close }}</span><span class="input-group-addon">PM</span></div>
-                                    <div class="input-group m-b"><span style="width: 100px;background-color: #e5e6e7" class="input-group-addon">Wed Open</span><span class="form-control">{{ $store->wed_open }}</span><span class="input-group-addon">AM</span><span style="width: 100px;background-color: #e5e6e7" class="input-group-addon">Wed Close</span><span class="form-control">{{ $store->wed_close }}</span><span class="input-group-addon">PM</span></div>
-                                    <div class="input-group m-b"><span style="width: 100px;background-color: #e5e6e7" class="input-group-addon">Thu Open</span><span class="form-control">{{ $store->thu_open }}</span><span class="input-group-addon">AM</span><span style="width: 100px;background-color: #e5e6e7" class="input-group-addon">Thu Close</span><span class="form-control">{{ $store->thu_close }}</span><span class="input-group-addon">PM</span></div>
-                                    <div class="input-group m-b"><span style="width: 100px;background-color: #e5e6e7" class="input-group-addon">Fri Open</span><span class="form-control">{{ $store->fri_open }}</span><span class="input-group-addon">AM</span><span style="width: 100px;background-color: #e5e6e7" class="input-group-addon">Fri Close</span><span class="form-control">{{ $store->fri_close }}</span><span class="input-group-addon">PM</span></div>
-                                    <div class="input-group m-b"><span style="width: 100px;background-color: #e5e6e7" class="input-group-addon">Sat Open</span><span class="form-control">{{ $store->sat_open }}</span><span class="input-group-addon">AM</span><span style="width: 100px;background-color: #e5e6e7" class="input-group-addon">Sat Close</span><span class="form-control">{{ $store->sat_close }}</span><span class="input-group-addon">PM</span></div>
-                                    <div class="input-group m-b"><span style="width: 100px;background-color: #e5e6e7" class="input-group-addon">Sun Open</span><span class="form-control">{{ $store->sun_open }}</span><span class="input-group-addon">AM</span><span style="width: 100px;background-color: #e5e6e7" class="input-group-addon">Sun Close</span><span class="form-control">{{ $store->sun_close }}</span><span class="input-group-addon">PM</span></div>
+                                    <div class="input-group m-b"><span style="width: 60px;background-color: #e5e6e7"
+                                                                       class="input-group-addon">Mon</span><span
+                                                class="form-control">{{ $store->mon_open }}</span><span
+                                                class="input-group-addon">To</span><span
+                                                class="form-control">{{ $store->mon_close }}</span></div>
+                                    <div class="input-group m-b"><span style="width: 60px;background-color: #e5e6e7"
+                                                                       class="input-group-addon">Tue</span><span
+                                                class="form-control">{{ $store->tue_open }}</span><span
+                                                class="input-group-addon">To</span><span
+                                                class="form-control">{{ $store->tue_close }}</span></div>
+                                    <div class="input-group m-b"><span style="width: 60px;background-color: #e5e6e7"
+                                                                       class="input-group-addon">Wed</span><span
+                                                class="form-control">{{ $store->wed_open }}</span><span
+                                                class="input-group-addon">To</span><span
+                                                class="form-control">{{ $store->wed_close }}</span></div>
+                                    <div class="input-group m-b"><span style="width: 60px;background-color: #e5e6e7"
+                                                                       class="input-group-addon">Thu</span><span
+                                                class="form-control">{{ $store->thu_open }}</span><span
+                                                class="input-group-addon">To</span><span
+                                                class="form-control">{{ $store->thu_close }}</span></div>
+                                    <div class="input-group m-b"><span style="width: 60px;background-color: #e5e6e7"
+                                                                       class="input-group-addon">Fri</span><span
+                                                class="form-control">{{ $store->fri_open }}</span><span
+                                                class="input-group-addon">To</span><span
+                                                class="form-control">{{ $store->fri_close }}</span></div>
+                                    <div class="input-group m-b"><span style="width: 60px;background-color: #e5e6e7"
+                                                                       class="input-group-addon">Sat</span><span
+                                                class="form-control">{{ $store->sat_open }}</span><span
+                                                class="input-group-addon">To</span><span
+                                                class="form-control">{{ $store->sat_close }}</span></div>
+                                    <div class="input-group m-b"><span style="width: 60px;background-color: #e5e6e7"
+                                                                       class="input-group-addon">Sun</span><span
+                                                class="form-control">{{ $store->sun_open }}</span><span
+                                                class="input-group-addon">To</span><span
+                                                class="form-control">{{ $store->sun_close }}</span></div>
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                                {{ Form::label('status', 'Status:', ['class' => 'col-sm-2 control-label']) }}
+                                {{ Form::label('active', 'Active:', ['class' => 'col-sm-2 control-label']) }}
                                 <div style="text-align:left" class="col-sm-10 control-label">
                                     @if ($store->active == 1)
                                         <span class="label label-primary">Active</span>
@@ -174,9 +200,82 @@
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
+                                {{ Form::label('approved', 'Approved:', ['class' => 'col-sm-2 control-label']) }}
+                                <div style="text-align:left" class="col-sm-10 control-label">
+                                    @if ($store->approved == 'Pending')
+                                        <span class="label label-warning">Pending</span>
+                                    @elseif ($store->approved == 'Approved')
+                                        <span class="label label-primary">Approved</span>
+                                    @else
+                                        <span class="label label-danger">Rejected</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                {{ Form::label('overview', 'Store Overview:', ['class' => 'col-sm-2 control-label']) }}
+                                <div class="col-sm-10">
+                                    {{ Form::textarea('overview', $store->overview, ['class' => 'form-control', 'readonly']) }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                {{ Form::label('images', 'Store images:', ['class' => 'col-sm-2 control-label']) }}
+                                <div class="col-sm-10">
+                                    <div style="float: left;">
+                                        <img style="width:200px;height:200px;" id="img_image1"
+                                             @if ($store->image1) src="{{ $store->image1 }}"
+                                             @else src="{{ URL::asset('images/uploads/avatars/image.png') }}" @endif>
+                                        <div>
+                                            <label><input style="margin-right: 10px;" type="radio" value="image1"
+                                                          name="cover"
+                                                          @if ($store->cover_image1 == 1) checked="checked" @endif>Cover
+                                                Image</label>
+                                        </div>
+                                    </div>
+                                    <div style="float: left;">
+                                        <img style="width:200px;height:200px;" id="img_image2"
+                                             @if ($store->image2) src="{{ $store->image2 }}"
+                                             @else src="{{ URL::asset('images/uploads/avatars/image.png') }}" @endif>
+                                        <div>
+                                            <label><input style="margin-right: 10px;" type="radio" value="image2"
+                                                          name="cover"
+                                                          @if ($store->cover_image2 == 1) checked="checked" @endif>Cove
+                                                Image</label>
+                                        </div>
+                                    </div>
+                                    <div style="float: left;">
+                                        <img style="width:200px;height:200px;" id="img_image3"
+                                             @if ($store->image3) src="{{ $store->image3 }}"
+                                             @else src="{{ URL::asset('images/uploads/avatars/image.png') }}" @endif>
+                                        <div>
+                                            <label><input style="margin-right: 10px;" type="radio" value="image3"
+                                                          name="cover"
+                                                          @if ($store->cover_image3 == 1) checked="checked" @endif>Cover
+                                                Image</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                {{ Form::label('note', 'Note:', ['class' => 'col-sm-2 control-label']) }}
+                                <div class="col-sm-10">
+                                    {{ Form::textarea('note', $store->note, ['class' => 'form-control', 'readonly']) }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
                                 {{ Form::label('created_at', 'Created At:', ['class' => 'col-sm-2 control-label']) }}
                                 <div class="col-sm-10">
                                     {{ Form::label('created_at', $store->created_at, ['class' => 'control-label']) }}
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                {{ Form::label('updated_at', 'Updated At:', ['class' => 'col-sm-2 control-label']) }}
+                                <div class="col-sm-10">
+                                    {{ Form::label('updated_at', $store->updated_at, ['class' => 'control-label']) }}
                                 </div>
                             </div>
                             @if (!empty($store->deleted_at))

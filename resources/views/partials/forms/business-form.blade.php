@@ -1,6 +1,6 @@
 @if($showOwnerSection == "Yes")
     <div class="form-group">
-        {{ Form::label('owner_name', 'Name:', ['class' => 'col-sm-2 control-label']) }}
+        {{ Form::label('owner_name', 'Owner Name:', ['class' => 'col-sm-2 control-label']) }}
         <div class="col-sm-10">
             {{ Form::text('owner_name', null, ['placeholder' => 'Name' , 'class' => 'form-control']) }}
         </div>
@@ -43,7 +43,23 @@
 </div>
 <div class="hr-line-dashed"></div>
 <div class="form-group">
-    {{ Form::label('type', 'Type:', ['class' => 'col-sm-2 control-label']) }}
+    {{ Form::label('logo', 'Business Logo:', ['class' => 'col-sm-2 control-label']) }}
+    <div class="col-sm-10">
+        <img style="width:200px;height:200px;float:left;" id="img_logo"
+             @if (isset($business) && $business->logo) src="{{ $business->logo }}"
+             @else src="{{ URL::asset('images/uploads/avatars/logo.png') }}" @endif>
+        <div class="col-sm-10">
+            {{ Form::file('logo', null, ['id' => 'logo', 'class' => 'form-control']) }}
+            @if (isset($business) && $business->logo)
+                <a class="btn btn-sm btn-danger" style="margin-top: 10px" type="button"
+                   onClick="deleteBusinessLogo({{ $business->id }})"><i
+                            class="fa fa-trash"></i> Delete</a>
+            @endif
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    {{ Form::label('type', 'Business Type:', ['class' => 'col-sm-2 control-label']) }}
     <div class="col-sm-10">
         {{ Form::select('type', ['Retail' => 'Retail', 'Services' => 'Services', 'Retail and Services' => 'Retail and Services'], null, ['placeholder' => 'Pick a type', 'class' => 'form-control']) }}
     </div>
@@ -78,6 +94,10 @@
 </div>
 <div class="hr-line-dashed"></div>
 <div class="form-group">
+    <div style="float: right; padding: 10px;" class="col-sm-10 alert alert-info" role="alert">Info! Please select a membership plan.
+    </div>
+</div>
+<div class="form-group">
     {{ Form::label('membership_plan', 'Membership Plan:', ['class' => 'col-sm-2 control-label']) }}
     <div class="col-sm-10">
         {{ Form::select('membership_plan', $membership_plans, $plan, ['placeholder' => 'Pick a membership plan', 'class' => 'form-control']) }}
@@ -85,6 +105,11 @@
 </div>
 @if($showActiveSection == "Yes")
     <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        <div style="float: right; padding: 10px;" class="col-sm-10 alert alert-warning" role="alert">Warning! This
+            business, it's stores and it's deals won't be accessible on the apps if active field is inactive.
+        </div>
+    </div>
     <div class="form-group">
         {{ Form::label('active', 'Active:', ['class' => 'col-sm-2 control-label']) }}
         <div class="col-sm-10">
@@ -94,16 +119,27 @@
         </div>
     </div>
 @endif
-@if($showStatusSection == "Yes")
+@if($showApprovedSection == "Yes")
     <div class="hr-line-dashed"></div>
     <div class="form-group">
-        {{ Form::label('status', 'Status:', ['class' => 'col-sm-2 control-label']) }}
+        <div style="float: right; padding: 10px;" class="col-sm-10 alert alert-warning" role="alert">Warning! This
+            business, it's stores and its' deals won't be accessible on the apps if approved field is pending or
+            rejected.
+        </div>
+    </div>
+    <div class="form-group">
+        {{ Form::label('approved', 'Approved:', ['class' => 'col-sm-2 control-label']) }}
         <div class="col-sm-10">
-            {{ Form::select('status', ['Pending' => 'Pending', 'Approved' => 'Approved', 'Rejected' => 'Rejected'], null, ['placeholder' => 'Pick a status', 'class' => 'form-control']) }}
+            {{ Form::select('approved', ['Pending' => 'Pending', 'Approved' => 'Approved', 'Rejected' => 'Rejected'], null, ['placeholder' => 'Pick a status', 'class' => 'form-control']) }}
         </div>
     </div>
 @endif
 <div class="hr-line-dashed"></div>
+<div class="form-group">
+    <div style="float: right; padding: 10px;" class="col-sm-10 alert alert-info" role="alert">Info! Provide any
+        suggestions or special considerations.
+    </div>
+</div>
 <div class="form-group">
     {{ Form::label('note', 'Note:', ['class' => 'col-sm-2 control-label']) }}
     <div class="col-sm-10">

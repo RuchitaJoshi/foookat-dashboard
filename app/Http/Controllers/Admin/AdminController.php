@@ -8,9 +8,12 @@ use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\AdminRepository;
+use File;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
+use Intervention\Image\Facades\Image;
 use Laracasts\Flash\Flash;
 
 class AdminController extends Controller
@@ -22,6 +25,7 @@ class AdminController extends Controller
 
     /**
      * Create a new controller instance.
+     *
      * @param AdminRepository $adminRepository
      */
     public function __construct(AdminRepository $adminRepository)
@@ -34,7 +38,7 @@ class AdminController extends Controller
     /**
      * Get all super admins and system admins
      *
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function all()
     {
@@ -45,22 +49,21 @@ class AdminController extends Controller
 
     /**
      * @param $id
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
         $admin = $this->adminRepository->getAdmin($id);
 
-        if($admin) {
+        if ($admin) {
             return view('admins.show', ['admin' => $admin]);
-        }
-        else {
+        } else {
             return Response::view('errors.404');
         }
     }
 
     /**
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -69,22 +72,10 @@ class AdminController extends Controller
 
     /**
      * @param AdminRequest $request
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(AdminRequest $request)
     {
-        if ($request->hasFile('profile_picture')) {
-            $extension = $request->file('profile_picture')->getClientOriginalExtension();
-            $destination_filename = rand(11111,99999).'.'.$extension;
-            $file = $request->file('profile_picture')->move('images/uploads/', $destination_filename);
-            $s3 = App::make('aws')->createClient('s3');
-            dd($s3->putObject(array(
-                'Bucket'     => 'foookat',
-                'Key'        => 'cafe',
-                'SourceFile' => 'images/uploads/'.$destination_filename,
-            )));
-        }
-
         $role = Role::where('name', '=', $request->get('role'))->firstOrFail();
 
         $admin = User::create(['name' => $request->get('name'),
@@ -96,14 +87,30 @@ class AdminController extends Controller
 
         $admin->admins()->attach($role->id, ['active' => 1]);
 
+        if ($request->hasFile('profile_picture')) {
+            $profile_picture = $request->file('profile_picture');
+            $filename = $admin->id . '_' . time() . '.' . $profile_picture->getClientOriginalExtension();
+            Image::make($profile_picture)->resize(300, 300)->save(public_path('/images/uploads/' . $filename));
+            $s3 = App::make('aws')->createClient('s3');
+            $profile_picture_url = $s3->putObject(array(
+                'Bucket' => env('AWS_BUCKET', ''),
+                'Key' => $filename,
+                'SourceFile' => 'images/uploads/' . $filename,
+            ));
+            $admin->update(['profile_picture' => $profile_picture_url['ObjectURL']]);
+            if (File::exists(public_path('/images/uploads/' . $filename))) {
+                File::delete(public_path('/images/uploads/' . $filename));
+            }
+        }
+
         Flash::success($admin->name . ' has been successfully created.');
 
-        return redirect('admins/all');
+        return redirect(route('admins.all'));
     }
 
     /**
      * @param $id
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
@@ -119,12 +126,12 @@ class AdminController extends Controller
     /**
      * @param $id
      * @param AdminRequest $request
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function update($id, AdminRequest $request)
     {
         $admin = User::withTrashed()->findOrFail($id);
-        
+
         $role = Role::where('name', '=', $request->get('role'))->firstOrFail();
 
         if (empty($request->get('password'))) {
@@ -144,23 +151,38 @@ class AdminController extends Controller
             $admin->admins()->detach();
 
             $admin->admins()->attach($role->id, ['active' => 1]);
-        }
-        else {
+        } else {
             $portal_active = $request->get('portal_active') == "on" ? 1 : 0;
 
-            if($admin->admins->first()->pivot->active != $portal_active) {
-                $admin->admins()->updateExistingPivot($role->id,['active' => $portal_active]);
+            if ($admin->admins->first()->pivot->active != $portal_active) {
+                $admin->admins()->updateExistingPivot($role->id, ['active' => $portal_active]);
+            }
+        }
+
+        if ($request->hasFile('profile_picture')) {
+            $profile_picture = $request->file('profile_picture');
+            $filename = $admin->id . '_' . time() . '.' . $profile_picture->getClientOriginalExtension();
+            Image::make($profile_picture)->resize(300, 300)->save(public_path('/images/uploads/' . $filename));
+            $s3 = App::make('aws')->createClient('s3');
+            $profile_picture_url = $s3->putObject(array(
+                'Bucket' => env('AWS_BUCKET', ''),
+                'Key' => $filename,
+                'SourceFile' => 'images/uploads/' . $filename,
+            ));
+            $admin->update(['profile_picture' => $profile_picture_url['ObjectURL']]);
+            if (File::exists(public_path('/images/uploads/' . $filename))) {
+                File::delete(public_path('/images/uploads/' . $filename));
             }
         }
 
         Flash::success($admin->name . ' has been successfully updated.');
 
-        return redirect('admins/all');
+        return redirect(route('admins.all'));
     }
 
     /**
      * @param $id
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Exception
      */
     public function destroy($id)
@@ -173,11 +195,10 @@ class AdminController extends Controller
 
                 Flash::success('Admin has been successfully deleted.');
 
-                return redirect('admins/all');
+                return redirect(route('admins.show', $admin->id));
             } else {
                 return Response::view('errors.403');
             }
         }
     }
-
 }

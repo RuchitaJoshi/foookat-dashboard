@@ -16,7 +16,7 @@ class Store extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'overview', 'address', 'city', 'state', 'zip_code', 'latitude', 'longitude', 'email', 'mobile_number' ,'phone_number', 'business_id', 'note', 'active', 'status'
+        'name', 'overview', 'address', 'city', 'state', 'zip_code', 'latitude', 'longitude', 'email', 'mobile_number' ,'phone_number', 'business_id', 'note', 'active', 'approved'
     ];
 
     protected $dates = ['deleted_at'];
@@ -27,6 +27,16 @@ class Store extends Model
      * @return string
      */
     public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->setTimezone(config('constants.default-timezone'))->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * Get updated at attribute
+     * @param $value
+     * @return string
+     */
+    public function getUpdatedAtAttribute($value)
     {
         return Carbon::parse($value)->setTimezone(config('constants.default-timezone'))->format('Y-m-d H:i:s');
     }
@@ -58,5 +68,33 @@ class Store extends Model
     public function hours()
     {
         return $this->hasOne('App\StoreHours');
+    }
+
+    /**
+     * Get the images associated with the store.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function images()
+    {
+        return $this->hasOne('App\StoreImages');
+    }
+
+    /**
+     * Get the league associated with the store.
+     */
+    public function league()
+    {
+        return $this->belongsToMany('App\League','stores_leagues')->withTimestamps();
+    }
+
+    /**
+     * Get the deals associated with the store.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function deals()
+    {
+        return $this->hasMany('App\Deal');
     }
 }

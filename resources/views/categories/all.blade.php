@@ -44,67 +44,24 @@
                                 <tbody>
                                 @if(count($categories))
                                     @foreach($categories as $category)
-                                        @if (empty($category->deleted_at))
-                                            <tr>
-                                                <td class="center-table">{{ $category->name }}</td>
-                                                <td class="center-table">{{ $category->commission }}</td>
-                                                <td class="center-table">{{ $category->order }}</td>
-                                                <td class="center-table">
-                                                    @if ($category->active == 1)
-                                                        <span class="label label-primary">Active</span>
-                                                    @else
-                                                        <span class="label label-danger">Inactive</span>
-                                                    @endif
-                                                </td>
-                                                <td class="center-table">{{ $category->created_at }}</td>
-                                                <td class="center-table">
-                                                    <a href="{{ route('categories.show', $category->id) }}" class="btn btn-white btn-sm"><i
+                                        <tr>
+                                            <td class="center-table">{{ $category->name }}</td>
+                                            <td class="center-table">{{ $category->commission }}</td>
+                                            <td class="center-table">{{ $category->order }}</td>
+                                            <td class="center-table">
+                                                @if ($category->active == 1)
+                                                    <span class="label label-primary">Active</span>
+                                                @else
+                                                    <span class="label label-danger">Inactive</span>
+                                                @endif
+                                            </td>
+                                            <td class="center-table">{{ $category->created_at }}</td>
+                                            <td class="center-table">
+                                                <a href="{{ route('categories.show', $category->id) }}"
+                                                   class="btn btn-white btn-sm"><i
                                                             class="fa fa-folder-open"></i> View </a>
-                                                    <a href="{{ route('categories.edit', $category->id) }}"
-                                                       class="btn btn-white btn-sm"><i class="fa fa-pencil"></i>
-                                                        Edit </a>
-                                                    {!! Form::open(array('method' => 'DELETE', 'style' => 'display: inline-block', 'route' => ['categories.destroy',$category->id])) !!}
-                                                    <button class="btn btn-sm btn-danger" type="button"
-                                                            data-toggle="modal"
-                                                            data-target="#confirmDelete"
-                                                            data-title="Confirm Delete Category"
-                                                            data-message="Are you sure you want to delete this category?">
-                                                        <i class="fa fa-trash"></i> Delete
-                                                    </button>
-                                                    {!! Form::close() !!}
-                                                </td>
-                                            </tr>
-                                        @else
-                                            <tr class="danger">
-                                                <td class="center-table">{{ $category->name }}</td>
-                                                <td class="center-table">{{ $category->commission }}</td>
-                                                <td class="center-table">{{ $category->order }}
-                                                <td class="center-table">
-                                                    @if ($category->active == 1)
-                                                        <span class="label label-primary">Active</span>
-                                                    @else
-                                                        <span class="label label-danger">Inactive</span>
-                                                    @endif
-                                                </td>
-                                                <td class="center-table">{{ $category->created_at }}</td>
-                                                <td class="center-table">
-                                                    <a href="{{ route('categories.show', $category->id) }}" class="btn btn-white btn-sm"><i
-                                                                class="fa fa-folder-open"></i> View </a>
-                                                    <a href="{{ route('categories.edit', $category->id) }}"
-                                                       class="btn btn-white btn-sm"><i class="fa fa-pencil"></i>
-                                                        Edit </a>
-                                                    {!! Form::open(array('method' => 'DELETE', 'style' => 'display: inline-block', 'route' => ['categories.destroy',$category->id])) !!}
-                                                    <button class="btn btn-sm btn-danger" type="button"
-                                                            data-toggle="modal"
-                                                            data-target="#confirmDelete"
-                                                            data-title="Confirm Delete Category"
-                                                            data-message="Are you sure you want to delete this category?">
-                                                        <i class="fa fa-trash"></i> Delete
-                                                    </button>
-                                                    {!! Form::close() !!}
-                                                </td>
-                                            </tr>
-                                        @endif
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 @else
                                     <tr>
@@ -124,7 +81,5 @@
             </div>
         </div>
     </div>
-
-    @include('partials.modals.delete')
 
 @endsection

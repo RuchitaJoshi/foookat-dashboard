@@ -41,7 +41,7 @@ class AdminRequest extends Request
             $rules = [
                 'name' => 'required|min:2|max:255',
                 'email' => 'required|email|max:255|unique:users,email,'.$this->segment(3),
-                'mobile_number' => 'required',
+                'mobile_number' => 'required|numeric',
                 'role'  => 'required',
             ];
         }
@@ -50,7 +50,7 @@ class AdminRequest extends Request
             $rules = [
                 'name' => 'required|min:2|max:255',
                 'email' => 'required|email|max:255|unique:users',
-                'mobile_number' => 'required',
+                'mobile_number' => 'required|numeric',
                 'role'  => 'required',
                 'password' => 'required|confirmed|min:8'
             ];
