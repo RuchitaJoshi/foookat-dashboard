@@ -1,63 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e761edba-019d-4953-bbc9-3684c2abe565" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2016_03_09_074851_create_businesses_inquiries_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2016_06_20_125246_create_users_verification_codes_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2016_06_28_043103_create_versions_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2016_07_26_080252_create_users_geolocations_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/StoresTableSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/console.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Business.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Business.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/City.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/City.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/StoreRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/StoreRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Store.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Store.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/ModelFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ModelFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_08_110517_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2016_03_08_110517_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_08_172057_create_users_tokens_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2016_03_08_172057_create_users_tokens_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_09_073024_create_cities_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2016_03_09_073024_create_cities_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_09_073046_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2016_03_09_073046_create_categories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_09_073047_create_categories_images_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_09_074852_create_businesses_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2016_03_09_074852_create_businesses_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_09_080351_create_businesses_plans_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_11_052644_create_stores_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2016_03_11_052644_create_stores_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_11_052857_create_stores_images_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_11_054838_create_stores_hours_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_11_054852_create_stores_reviews_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2016_03_11_054852_create_stores_reviews_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_11_055331_create_stores_news_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2016_03_11_055331_create_stores_news_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_14_043214_create_stores_leagues_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_14_043215_create_stores_average_ratings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2016_03_14_043215_create_stores_average_ratings_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_14_082149_create_deals_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2016_03_14_082149_create_deals_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_14_082410_create_deals_images_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_14_082513_create_deals_recurrences_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_14_083603_create_deals_errors_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2016_03_14_083603_create_deals_error_reports_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_14_084246_create_deals_activities_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2016_03_14_084246_create_deals_redeems_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_14_090902_create_deals_categories_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_14_092005_create_users_subscribes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2016_03_14_092005_create_users_favourites_stores_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_03_14_092006_create_users_favorites_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2016_03_14_092006_create_users_favourites_deals_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/BusinessesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/BusinessesTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/CitiesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/CitiesTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/LeaguesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/LeaguesTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/MembershipPlansTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/MembershipPlansTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/StatesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/StatesTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/errors/404.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/errors/404.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/forms/user-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/forms/user-form.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="e761edba-019d-4953-bbc9-3684c2abe565" name="Default" comment="" />
     <ignored path="laravel-sample.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -141,7 +85,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="json" value="36" />
-          <entry key="php" value="786" />
+          <entry key="php" value="789" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.rename.constructor" />
@@ -150,7 +94,7 @@
         <counts>
           <entry key="Blade" value="8" />
           <entry key="JSON" value="36" />
-          <entry key="PHP" value="778" />
+          <entry key="PHP" value="781" />
         </counts>
       </usages-collector>
     </session>
@@ -169,22 +113,8 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Deal.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Helpers/Helper.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="14" column="38" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+        <entry file="file://$PROJECT_DIR$/app/Deal.php">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
@@ -273,10 +203,10 @@
         <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" />
         <option value="$PROJECT_DIR$/resources/views/errors/404.blade.php" />
-        <option value="$PROJECT_DIR$/app/Helpers/Helper.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/forms/user-form.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/BusinessRequest.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Business/BusinessController.php" />
+        <option value="$PROJECT_DIR$/app/Helpers/Helper.php" />
       </list>
     </option>
   </component>
@@ -606,7 +536,7 @@
       <workItem from="1560045722320" duration="1602000" />
       <workItem from="1561773475792" duration="47000" />
       <workItem from="1561775540636" duration="2178000" />
-      <workItem from="1569806728065" duration="508000" />
+      <workItem from="1569806728065" duration="849000" />
     </task>
     <servers />
   </component>
@@ -643,7 +573,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="485831000" />
+    <option name="totallyTimeSpent" value="486172000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="0" />
@@ -971,9 +901,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Deal.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Business.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -988,6 +915,9 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Helpers/Helper.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -995,7 +925,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/app/Deal.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
