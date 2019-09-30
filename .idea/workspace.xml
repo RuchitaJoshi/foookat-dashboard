@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e761edba-019d-4953-bbc9-3684c2abe565" name="Default" comment="" />
+    <list default="true" id="e761edba-019d-4953-bbc9-3684c2abe565" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="laravel-sample.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -536,7 +538,7 @@
       <workItem from="1560045722320" duration="1602000" />
       <workItem from="1561773475792" duration="47000" />
       <workItem from="1561775540636" duration="2178000" />
-      <workItem from="1569806728065" duration="849000" />
+      <workItem from="1569806728065" duration="2242000" />
     </task>
     <servers />
   </component>
@@ -573,7 +575,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="486172000" />
+    <option name="totallyTimeSpent" value="487565000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="0" />
@@ -591,7 +593,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="PHP-CGI Server" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.3281704" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.6262774" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.8058394" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
