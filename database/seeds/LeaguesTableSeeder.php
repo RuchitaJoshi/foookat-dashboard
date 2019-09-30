@@ -13,7 +13,10 @@ class LeaguesTableSeeder extends Seeder
     public function run()
     {
         $leagues = [
-            [ 'name' => 'Restaurant']
+            [ 'name' => 'Fast food outlet'],
+            [ 'name' => 'Restaurant'],
+            [ 'name' => 'Grocery'],
+            [ 'name' => 'Electronics']
         ];
 
         foreach ($leagues as $league)

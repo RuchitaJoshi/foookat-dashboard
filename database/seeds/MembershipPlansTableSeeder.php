@@ -14,6 +14,11 @@ class MembershipPlansTableSeeder extends Seeder
     {
         $membership_plans = [
             [
+                'name' => 'Free',
+                'details' => '1 Store, 1 Deal',
+                'amount' => 0
+            ],
+            [
                 'name' => 'Basic',
                 'details' => '1 Store, Unlimited Deals, Basic Reports',
                 'amount' => 299
@@ -27,10 +32,6 @@ class MembershipPlansTableSeeder extends Seeder
                 'name' => 'Premium',
                 'details' => '10 Stores, Unlimited Deals, Detailed Reports, Access to Customer Engagement, Foookat Promotions',
                 'amount' => 999
-            ],
-            [
-                'name' => 'Commission',
-                'details' => 'Per deal commission'
             ]
         ];
 

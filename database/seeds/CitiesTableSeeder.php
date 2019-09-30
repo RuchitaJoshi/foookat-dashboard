@@ -13,11 +13,11 @@ class CitiesTableSeeder extends Seeder
     public function run()
     {
         $cities = [
-            [ 'name' => 'Ahmedabad', 'state_id' => 1],
-            [ 'name' => 'Gandhinagar', 'state_id' => 1],
-            [ 'name' => 'Surat', 'state_id' => 1],
-            [ 'name' => 'Baroda', 'state_id' => 1],
-            [ 'name' => 'Rajkot', 'state_id' => 1]
+            [ 'name' => 'Ahmedabad', 'state_id' => 1, 'active' =>  1],
+            [ 'name' => 'Gandhinagar', 'state_id' => 1, 'active' =>  1],
+            [ 'name' => 'Surat', 'state_id' => 1, 'active' =>  1],
+            [ 'name' => 'Baroda', 'state_id' => 1, 'active' =>  1],
+            [ 'name' => 'Rajkot', 'state_id' => 1, 'active' =>  1]
         ];
 
         foreach ($cities as $city)

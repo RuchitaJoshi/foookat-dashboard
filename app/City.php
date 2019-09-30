@@ -61,4 +61,24 @@ class City extends Model
     {
         return $this->belongsTo('App\State');
     }
+
+    /**
+     * Get the businesses associated with the city.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function businesses()
+    {
+        return $this->hasMany('App\Business');
+    }
+
+    /**
+     * Get the stores associated with the city.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function stores()
+    {
+        return $this->hasMany('App\Store');
+    }
 }

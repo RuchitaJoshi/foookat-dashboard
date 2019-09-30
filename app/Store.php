@@ -16,7 +16,7 @@ class Store extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'overview', 'address', 'city', 'state', 'zip_code', 'latitude', 'longitude', 'email', 'mobile_number' ,'phone_number', 'business_id', 'note', 'active', 'approved'
+        'name', 'overview', 'address', 'city', 'state', 'zip_code', 'latitude', 'longitude', 'email', 'mobile_number' ,'phone_number', 'business_id', 'note', 'active', 'approved', 'city_id'
     ];
 
     protected $dates = ['deleted_at'];
@@ -96,5 +96,13 @@ class Store extends Model
     public function deals()
     {
         return $this->hasMany('App\Deal');
+    }
+
+    /**
+     * Get the city belongs to store.
+     */
+    public function city()
+    {
+        return $this->belongsTo('App\City');
     }
 }

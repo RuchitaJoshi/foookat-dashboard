@@ -18,6 +18,7 @@ class CreateStoresAverageRatingsTable extends Migration
             $table->decimal('rating',10,2);
             $table->foreign('store_id')->references('id')->on('stores')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

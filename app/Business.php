@@ -16,7 +16,7 @@ class Business extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'logo', 'address', 'city', 'state', 'zip_code', 'type', 'active', 'approved', 'note'
+        'name', 'logo', 'address', 'city', 'state', 'zip_code', 'type', 'active', 'approved', 'note', 'city_id'
     ];
 
     protected $dates = ['deleted_at'];
@@ -80,5 +80,13 @@ class Business extends Model
     public function membershipPlan()
     {
         return $this->belongsToMany('App\MembershipPlan','businesses_plans')->withTimestamps();
+    }
+
+    /**
+     * Get the city belongs to business.
+     */
+    public function city()
+    {
+        return $this->belongsTo('App\City');
     }
 }

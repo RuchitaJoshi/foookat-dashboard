@@ -15,6 +15,7 @@ class CreateStoresNewsTable extends Migration
         Schema::create('stores_news', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('store_id')->unsigned();
+            $table->string('title');
             $table->text('news')->nullable();
             $table->string('image')->nullable();
             $table->foreign('store_id')->references('id')->on('stores')->onUpdate('cascade')->onDelete('cascade');

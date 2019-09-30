@@ -16,14 +16,14 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('mobile_number')->nullable();
             $table->string('profile_picture')->nullable();
-            $table->date('date_of_birth')->nullable();
-            $table->string('gender')->nullable();
-            $table->boolean('active')->default(false);
+            $table->date('date_of_birth');
+            $table->string('gender');
             $table->string('facebook_id')->nullable();
             $table->string('google_id')->nullable();
+            $table->boolean('active')->default(false);
             $table->string('email_verification_code')->nullable();
             $table->rememberToken();
             $table->timestamps();

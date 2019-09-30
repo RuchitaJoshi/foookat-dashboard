@@ -21,19 +21,3 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'active' => TRUE
     ];
 });
-
-
-$factory->define(App\Business::class, function (Faker\Generator $faker) {
-    $types = ["Retail", "Services", "Retail and Services"];
-
-    return [
-        'name' => $faker->name,
-        'address' => $faker->address,
-        'city' => $faker->city,
-        'state' => $faker->state,
-        'zip_code' => $faker->postcode,
-        'type' => $faker->randomElement($types),
-        'active' => TRUE
-    ];
-});
-

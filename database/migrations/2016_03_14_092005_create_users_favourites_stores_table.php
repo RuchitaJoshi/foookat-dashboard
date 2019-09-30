@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStoresLeaguesTable extends Migration
+class CreateUsersFavouritesStoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class CreateStoresLeaguesTable extends Migration
      */
     public function up()
     {
-        Schema::create('stores_leagues', function (Blueprint $table) {
+        Schema::create('users_favourites_stores', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->integer('store_id')->unsigned();
-            $table->integer('league_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('store_id')->references('id')->on('stores')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('league_id')->references('id')->on('leagues')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +30,6 @@ class CreateStoresLeaguesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('stores_leagues');
+        Schema::drop('users_favourites_stores');
     }
 }

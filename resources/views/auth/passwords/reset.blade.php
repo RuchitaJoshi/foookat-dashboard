@@ -1,69 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foookat Online Services</title>
-    <link href="{{ URL::asset('css/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('css/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('css/animate/animate.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('css/inspinia/style.min.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('css/custom/style.css') }}" rel="stylesheet">
-</head>
-<body class="gray-bg">
-<img class="body-background img-responsive"
-     src="{{ URL::asset('images/backgrounds/cafe.jpg') }}"/>
-<div class="black-overlay">
-    <div class="middle-box text-center animated fadeInDown">
-        <div>
-            <img class="img-responsive" src="{{ URL::asset('images/logo/foookat_logo_alpha.png') }}"/>
-            <h4>Welcome to Foookat Seller Portal</h4>
-            @if (count($errors) > 0)
-                <div class="col-md-12 alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li style="float: left;">{{ $error }}</li>
-                        @endforeach
-                    </ul>
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Reset Password</div>
+
+                <div class="panel-body">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
+                        {{ csrf_field() }}
+
+                        <input type="hidden" name="token" value="{{ $token }}">
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" required autofocus>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label">Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+
+                                @if ($errors->has('password_confirmation'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Reset Password
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            @endif
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
-                {!! csrf_field() !!}
-                <input type="hidden" name="token" value="{{ $token }}">
-                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <div class="col-md-12">
-                        <input type="email" class="form-control" name="email" placeholder="Email Address" value="{{ $email or old('email') }}">
-                    </div>
-                </div>
-                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                    <div class="col-md-12">
-                        <input type="password" class="form-control" name="password"  placeholder="Password">
-                    </div>
-                </div>
-                <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                    <div class="col-md-12">
-                        <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary block full-width m-b">
-                            <i class="fa fa-btn fa-refresh"></i>Reset Password
-                        </button>
-                    </div>
-                </div>
-            </form>
-            <p class="m-t">
-                <small>&copy; Copyrights Foookat Online Services 2016</small>
-            </p>
+            </div>
         </div>
     </div>
 </div>
-<!-- Mainly scripts -->
-<script src="{{ URL::asset('js/jquery/jquery-2.1.1.js') }}"></script>
-<script src="{{ URL::asset('js/bootstrap/bootstrap.min.js') }}"></script>
-</body>
-</html>
-
+@endsection

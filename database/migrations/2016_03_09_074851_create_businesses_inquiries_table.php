@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDealsActivitiesTable extends Migration
+class CreateBusinessesInquiriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,14 @@ class CreateDealsActivitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('deals_activities', function (Blueprint $table) {
+        Schema::create('businesses_inquiries', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('deal_id')->unsigned();
+            $table->string('name');
+            $table->string('address');
+            $table->string('city');
+            $table->integer('zip_code');
+            $table->string('contact_number');
             $table->integer('user_id')->unsigned();
-            $table->string('activity');
-            $table->foreign('deal_id')->references('id')->on('deals')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
@@ -31,6 +33,6 @@ class CreateDealsActivitiesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('deals_activities');
+        Schema::drop('businesses_inquiries');
     }
 }
